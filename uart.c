@@ -1,32 +1,146 @@
-#include <gps.h>
+// Most of the code is from https://github.com/marmat/gps-logger/ and edited to suite my purpose
 
-void USART_Init(unsigned int baud)
-{
-	// Setting baud rate
-	UBRRHn = (unsigned char)(baud>>8);
-	UBRRLn = (unsigned char)baud;
+#include "uart.h"
+#include <avr/interrupt.h>
 
-	// Enable reciever and transmitter
-	UCSRnB |= (1<<RXENn)|(1<<TXENn);
+/// FIFO input buffer
+static volatile char uart_recieveBuf[UART_INPUT_BUFFER_SIZE];
+/// Index of the last character that has been read in the input buffer
+static volatile uint8_t uart_recieveBufRead = 0;
+/// Index of the last charachter that has been written in the input buffer
+static volatile uint8_t uart_recieveBufWrite = 0;
 
-	// Set frame format: 8 bits data, 2 stop bits
-	UCSRnC = (1<<USBSn)|(3<<UCSZn0);
+/// FIFO output buffer
+static volatile char uart_transmitBuf[UART_OUTPUT_BUFFER_SIZE];
+/// Index of the last character that has been read in the output buffer
+static volatile uint8_t uart_transmitBufRead = 0;
+/// Index of the last character that has been written in the output buffer
+static volatile uint8_t uart_transmitBufWrite = 0;
+
+void uart_init(uint8_t pConfig, uint16_t pUbr) {
+    // write baudrate config (high-byte has to be written first!)
+    UBRR1H = (unsigned char)(pUbr>>8);
+    UBRR1L = (unsigned char)pUbr;
+
+    // configure port and activate interrupts
+    UCSR1B |= (1 << RXCIE1) | (1 << RXEN1) | (1 << TXEN1);
+
+    // write frame configuration
+    UCSR1C = pConfig;
 }
 
-void USART_Transmit(unsigned char data)
-{
-	/* Wait for empty transmit buffer, wait for the transmit buffer to be ready */
-	while (!( UCSRnA & (1<<UDREn)));
+unsigned char uart_recieveChar() {
+    if (uart_recieveBufRead != uart_recieveBufWrite) {
+        // increment reading pointer while catching a possible array overflow
+        if (++uart_recieveBufRead >= UART_RECIEVE_BUFFER_SIZE) {
+            uart_recieveBufRead = 0;
+        }
 
-	/* Put data into buffer, sends the data */
-	UDRn = data;
+        return uart_recieveBuf[uart_recieveBufRead];
+    }
+
+    return '\0';
 }
 
-unsigned char USART_Receive(void)
-{
-	/* Wait for data to be received */
-	while(!(UCSRnA & (1<<RXCn)));
-	
-	/* Get and return received data from buffer */
-	return UDRn;
+uint8_t uart_hasData() {
+    return uart_recieveBufRead != uart_recieveBufWrite;
+}
+
+uint8_t uart_recieveString(char* pResult, uint8_t pResultSize) {
+    uint8_t currentChar = 0;
+    while(currentChar < pResultSize) {
+        pResult[currentChar++] = uart_recieveChar();
+        if ((!uart_hasData()) || (pResult[currentChar - 1] == LF)) {
+            break;
+        }
+    }
+
+    pResult[currentChar-1] = '\0';
+    if((currentChar > 1) && (pResult[currentChar-2] == CR)) {
+        pResult[currentChar-2] = '\0';
+    }
+
+    return currentChar;
+}
+
+void uart_transmitChar(char pData) {
+    // write byte into the output buffer, wait if the buffer is currently full
+    if (uart_transmitBufWrite+1 >= UART_TRANSMIT_BUFFER_SIZE) {
+        // writing pointer is at the end of the buffer array, next index will be 0
+        while (uart_transmitBufRead == 0) {
+            // wait, buffer is full
+        }
+
+        uart_transmitBufWrite = 0;
+    } else {
+        while (uart_transmitBufWrite+1 == uart_transmitBufRead) {
+            // wait, buffer is full
+        }
+
+        uart_transmitBufWrite++;
+    }
+
+    // write character into buffer
+    uart_transmitBuf[uart_transmitBufWrite] = pData;
+
+    // activate interrupt
+    UCSR1B |= (1 << UDRIE1);
+}
+
+void uart_transmitString(const char* pData) {
+    // simply call transmitChar for each character in the string
+    uint8_t i = 0;
+    while(pData[i]) {
+        uart_transmitChar(pData[i++]);
+    }
+}
+
+void uart_clearBuf() {
+    uart_recieveBufRead = uart_recieveBufWrite;
+}
+
+/*
+Interrupt handling for incoming UART-data.
+The method will write the incoming character directly into the input buffer.
+If the buffer is full, characters may be discarded.
+*/
+
+ISR(USART_RX_vect) {
+    if(uart_recieveBufWrite+1 >= UART_RECIEVE_BUFFER_SIZE) {
+            // writing pointer is at the end of the buffer array, next index will be 0
+            if(uart_recieveBufRead != 0) {
+                uart_recieveBufWrite = 0;
+                uart_recieveBuf[uart_recieveBufWrite] = UDR1;
+                return;
+            }
+    } else {
+        if(uart_recieveBufWrite+1 != uart_recieveBufRead) {
+            uart_recieveBuf[++uart_recieveBufWrite] = UDR1;
+            return;
+        }
+    }
+
+    // if the method didn't return, it means that the buffer is full
+    // discard the byte in order to prevent a blocked UDR register
+    char garbage;
+    garbage = UDR1;
+}
+
+/*
+Interrupt handling for outgoing UART-data.
+As long as there is data in the output buffer, the method will write the data into the specific UART register. When the buffer is empty, the interrupt will deactivate itself.
+*/
+
+ISR(USART_UDRE_vect) {
+    // write next byte until reading index == writing index
+    if (uart_transmitBufRead != uart_transmitBufWrite) {
+        if (++uart_transmitBufRead >= UART_TRANSMIT_BUFFER_SIZE) {
+            uart_transmitBufRead = 0;
+        }
+
+        UDR1 = uart_transmitBuf[uart_transmitBufRead];
+    } else {
+        // buffer empty, deactivate interrupt
+        UCSR1B &= ~(1 << UDRIE1);
+    }
 }

@@ -2,11 +2,17 @@ To communicate with gps module, first we need to set up the the connection betwe
 
 For this project, we will be using only pin PD2 and PD3 for the communication.
 
+USART Initialisation
+--------------------
+The USART has to be initialized before any communication can take place. The initialization process normally consists of setting the baud rate, setting frame format and enabling the Transmitter or the Receiver depending on the usage. 
+
 Setting up baud rate.
 ---------------------
 The suitable baud rate to be use with external oscillator of 7.3728Hz is 38400 and ST22 GPS Module are capable of using that baud rate.
 
-UBRR = 0x00B
+UBRR = 0x00B; or in integer format UBRR = 11;
+
+#define UART_BAUD_RATE 11
 
 Configuring general I/O pins
 ----------------------------
@@ -28,44 +34,69 @@ and
 
 DDD2 in DDRD to 0
 
-Oops, I found out that I can't transmit USART using Pin D by simply setting the DDD3 to 1. Read more on page 202.
-
 Register Description
 --------------------
 More information about register is on page 91.
 
 Interrupt
------
+---------
 The interrupts information is on the page 61 in the data sheet for Atmega 324p.
 
-Transmitting Data Code
+Initialising USART for Receiving and Trasmitting Data
+-----------------------------------------------------
+Read more on page 177.
+
+void USART_Init(unsigned int ubrr_value)
+{
+	// Setting baud rate
+	UBRRHn = (unsigned char)(ubrr_value>>8);
+	UBRRLn = (unsigned char)ubrr_value;
+
+	// Enable reciever and transmitter
+	UCSRnB |= (1<<RXENn)|(1<<TXENn);
+
+	// Set frame format: 8 bits data, 2 stop bits
+	UCSRnC = (1<<USBSn)|(3<<UCSZn0);
+}
+
+Transmitting Data using USART
+-----------------------------
+Read more on page 178.
+
+void USART_Transmit(unsigned char data)
+{
+	/* Wait for empty transmit buffer, wait for the transmit buffer to be ready */
+	while (!( UCSRnA & (1<<UDREn)));
+
+	/* Put data into buffer, sends the data */
+	UDRn = data;
+}
+
+Receiving Data using USART
+--------------------------
+unsigned char USART_Receive( void )
+{
+	/* Wait for data to be received */
+	while(!(UCSRnA & (1<<RXCn)));
+	
+	/* Get and return received data from buffer */
+	return UDRn;
+}
+
+
+
+Setting GPS Module Baud Rate
+----------------------------
+Setting the baud rate to 38400:
+A0 A1 00 04 05 00 03 01 07 0D 0A
+
+Configure NMEA Message
 ----------------------
-More information on page 164.
+Setting the NMEA Message only for GLL:
+A0 A1 00 09 08 00 00 00 01 00 00 00 00 08 0D 0A
 
-The following code examples show how to initialize the SPI as a Master and how to perform a simple transmission. DDR_SPI in the examples must be replaced by the actual Data Direction Register controlling the SPI pins. DD_MOSI, DD_MISO and DD_SCK must be replaced by the actual data direction bits for these pins. For example if MOSI is placed on pin PB5, replace DD_MOSI with DDB5 and DDR_SPI with DDRB.
+System Position Rate
+--------------------
+Setting the update rate to 2Hz:
+A0 A1 00 03 0E 02 00 0F 0D 0A
 
-void SPI_MasterInit(void)
-{
-	/* Set MOSI and SCK output, all others input */
-	DDR_SPI = (1<<DD_MOSI) | (1<<DD_SCK);
-	/* Enable SPI, Master, set clock rate fck/16 */
-	SPCR = (1<<SPE) | (1<<MSTR) | (1<<SPR0);
-}
-
-void SPI_MasterTransmit(char cData)
-{
-	/* Start transmission */
-	SPDR = cData;
-	/* Wait for transmission complete */
-	while(!(SPSR & (1<<SPIF)));
-}
-
--- Actual code
-
-void SPI_MasterInit(void)
-{
-	/* Set MOSI and SCK as output in the PD3 pin */
-	DDRD |= (1<<DDD3) | (1<<)
-}
-
-The code is not complete since I found another way to use the alternate function of Pin D, which is to use the USART.

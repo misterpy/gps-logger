@@ -9,19 +9,18 @@
 int main(void)
 {
     /* insert your hardware initialization here */
-    for(;;){
-        /* insert your main loop code here */
 
-        //Read the data from sd card
+    while(1) {
+        // We'll write the data only if it contains a valid position
+        if (gps_getNMEA(nmeaBuf, 128) & GPS_NMEA_VALID) {
 
-		//Write the data from sd card
+            // calculate distance and display in LCD
 
-		//Read the data from GPS
-
-		//Calculate the distance of the coordinates
-
-		//Display the data in LCD
-
+            // logging the data into SD Card
+        }     
+        
+        sleep_mode();
     }
+
     return 0;   /* never reached */
 }
