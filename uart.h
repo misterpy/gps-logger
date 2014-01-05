@@ -11,8 +11,8 @@
 
 #define UART_8BIT 0x06
 
-// Use 2 stop bits
-#define UART_2STOP 0x08
+// Use 1 stop bits
+#define UART_1STOP 0x00
 
 #define UART_NOPAR 0x00
 #define UART_EVEN 0x20
@@ -32,7 +32,7 @@ Initializes the UART-port.
 Parameter pConfig is the UART configuration byte
 Parameter pUbr is a 16-bit integer containing the baudrate configuration value
 */
-    void uart_init(uint8_t pConfig, uint16_t pUbr);
+    void uart_init(uint16_t pUbr);
 
 /*
 Takes a character from the input buffer and returns it (FIFO).

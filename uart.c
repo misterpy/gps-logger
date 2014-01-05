@@ -17,7 +17,7 @@ static volatile uint8_t uart_transmitBufRead = 0;
 /// Index of the last character that has been written in the output buffer
 static volatile uint8_t uart_transmitBufWrite = 0;
 
-void uart_init(uint8_t pConfig, uint16_t pUbr) {
+void uart_init(uint16_t pUbr) {
     // write baudrate config (high-byte has to be written first!)
     UBRR1H = (unsigned char)(pUbr>>8);
     UBRR1L = (unsigned char)pUbr;
@@ -25,8 +25,7 @@ void uart_init(uint8_t pConfig, uint16_t pUbr) {
     // configure port and activate interrupts
     UCSR1B |= (1 << RXCIE1) | (1 << RXEN1) | (1 << TXEN1);
 
-    // write frame configuration
-    UCSR1C = pConfig;
+    // the frame configuration is not changed since the default setting is needed
 }
 
 unsigned char uart_recieveChar() {
