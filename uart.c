@@ -104,7 +104,7 @@ The method will write the incoming character directly into the input buffer.
 If the buffer is full, characters may be discarded.
 */
 
-ISR(USART_RX_vect) {
+ISR(USART1_RX_vect) {
     if(uart_recieveBufWrite+1 >= UART_RECIEVE_BUFFER_SIZE) {
             // writing pointer is at the end of the buffer array, next index will be 0
             if(uart_recieveBufRead != 0) {
@@ -130,7 +130,7 @@ Interrupt handling for outgoing UART-data.
 As long as there is data in the output buffer, the method will write the data into the specific UART register. When the buffer is empty, the interrupt will deactivate itself.
 */
 
-ISR(USART_UDRE_vect) {
+ISR(USART1_UDRE_vect) {
     // write next byte until reading index == writing index
     if (uart_transmitBufRead != uart_transmitBufWrite) {
         if (++uart_transmitBufRead >= UART_TRANSMIT_BUFFER_SIZE) {
