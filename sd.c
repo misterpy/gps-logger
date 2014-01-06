@@ -262,8 +262,6 @@ unsigned char SD_writeSingleBlock(unsigned long startBlock){
 }
 
 
-#ifndef FAT_TESTING_ONLY
-
 //***************************************************************************
 //Function	: to read multiple blocks from SD card & send every block to UART
 //Arguments	: none
@@ -421,5 +419,3 @@ unsigned char SD_writeMultipleBlock(unsigned long startBlock, unsigned long tota
     return 0;
 }
 //*********************************************
-
-#endif
