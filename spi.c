@@ -1,5 +1,9 @@
 // SPI Communication protocol
 
+<<<<<<< HEAD
+=======
+#include <avr/io.h>
+>>>>>>> af97042b507ae4b67adee6171f6223403292c78e
 #include "spi.h"
 
 //Initialize SPI for SD card
