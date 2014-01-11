@@ -33,6 +33,7 @@ void gps_init(uint8_t pFrequency, uint8_t pMessages) {
     _delay_ms(50);
 }
 
+// Function to calculate the checksum of the message sent
 unsigned char gps_calculateCS(const unsigned char* pPayload, uint16_t pLength) {
     unsigned char checkSum = 0;
     for(uint8_t i = 0; i < pLength; i++) {
@@ -43,29 +44,29 @@ unsigned char gps_calculateCS(const unsigned char* pPayload, uint16_t pLength) {
 
 unsigned char gps_setParam(unsigned char pCommand, unsigned char* pData, uint16_t pLength) {
     // start sequence (2 byte)
-    uart_setChar(0xA0);
-    uart_setChar(0xA1);
+    uart_transmitChar(0xA0);
+    uart_transmitChar(0xA1);
 
     // payload length (2 byte) == pLength + 1 because of message ID byte
-    uart_setChar(((pLength+1) & 0xFF00) >> 8);
-    uart_setChar((pLength+1) & 0x00FF);
+    uart_transmitChar(((pLength+1) & 0xFF00) >> 8);
+    uart_transmitChar((pLength+1) & 0x00FF);
 
     // payload
 
     // message ID (1 byte)
-    uart_setChar(pCommand);
+    uart_transmitChar(pCommand);
 
     // data (pLength byte)
     for(uint8_t i = 0; i < pLength; i++) {
-        uart_setChar(pData[i]);
+        uart_transmitChar(pData[i]);
     }
 
     // checksum (1 byte)
-    uart_setChar(gps_calculateCS(pData, pLength) ^ pCommand);
+    uart_transmitChar(gps_calculateCS(pData, pLength) ^ pCommand);
 
     // stop sequence (2 byte)
-    uart_setChar(CR);
-    uart_setChar(LF);
+    uart_transmitChar(CR);
+    uart_transmitChar(LF);
 
     return GPS_ACK;
 }
@@ -95,7 +96,7 @@ uint8_t gps_checkNMEA(const char* pSentence, uint8_t pMessageType, char* pPrefix
         // Prefix check is done if the prefixCounter points to the end of the
         // given prefix
         if (pPrefix[prefixCounter] != '\0') {
-            // return instantl if the prefixes do not match
+            // return instantly if the prefixes do not match
             if (pSentence[sentenceCounter] != pPrefix[prefixCounter]) {
                 return GPS_NMEA_UNKNOWN;
             }
@@ -170,7 +171,7 @@ uint8_t gps_checkNMEA(const char* pSentence, uint8_t pMessageType, char* pPrefix
 
 uint8_t gps_getNMEA(char* pOutput, uint8_t pMaxLength) {
     // A dollar sign indicates the start of a NMEA sentence
-    while(uart_getChar() != '$') {
+    while(uart_recieveChar() != '$') {
         // burn energy
         _delay_ms(1);
     }
@@ -186,7 +187,7 @@ uint8_t gps_getNMEA(char* pOutput, uint8_t pMaxLength) {
           // burn energy
         }
         
-        inChar = uart_getChar();
+        inChar = uart_recieveChar();
 
         pOutput[i++] = inChar;
     } while((inChar != LF) && (i < (pMaxLength-1)));
@@ -213,7 +214,7 @@ uint8_t gps_getNMEA(char* pOutput, uint8_t pMaxLength) {
                     return gps_checkNMEA(pOutput, GPS_NMEA_GLL, "$GPGLL", 6, "A", TRUE);
                 default:
                     return GPS_NMEA_UNKNOWN;
-            } //btw: no break;s are necessary as every case returns sth.
+            } //btw: no breaks are necessary as every case returns sth.
         case 'R': //only RMC left
             return gps_checkNMEA(pOutput, GPS_NMEA_RMC, "$GPRMC", 2, "A", TRUE);
         case 'V': //only VTG left
