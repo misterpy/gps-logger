@@ -1,7 +1,9 @@
 // SPI Communication protocol header
 
-#ifndef _SPI_ROUTINES_H_
-#define _SPI_ROUTINES_H_
+#ifndef SPI_H
+#define SPI_H
+
+#include "global.h"
 
 #define SPI_SD             SPCR = 0x52
 #define SPI_HIGH_SPEED     SPCR = 0x50; SPSR |= (1<<SPI2X)
