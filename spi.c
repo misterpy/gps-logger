@@ -1,7 +1,6 @@
 // SPI Communication protocol
 
-#include <avr/io.h>
-#include "SPI_routines.h"
+#include "spi.h"
 
 //Initialize SPI for SD card
 //clock rate: i.e. 125Khz
