@@ -16,6 +16,9 @@
 // recieve from the GPS module.
 char nmeaBuf[128];
 
+// This array will store the initial value read from SD Card
+char sdbuff[128];
+
 /*
     Value of Latitude, Longitude and distance will be stored here
     for further used such as displaying on the LCD and storing
@@ -45,8 +48,14 @@ int main(void)
     /* Hardware initialisation */
     gps_init(FREQUENCY, MESSAGES);
 
+    /* LCD and SD Initialisation */
+    // code goes here
+
     // Keep track of received messages
     uint8_t messageCount = 0;
+
+    /* Read the initial value from SD card and store it in sdbuff[128] */
+    // code goes here
 
     while(1) {
         // We'll write the data only if it contains a valid position
