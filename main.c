@@ -5,9 +5,12 @@
 #include "global.h"
 #include "gps.h"
 #include "calc.h"
+#include "fat32.h"
+#include "sd.h"
+#include "spi.h"
 
 // Set GPS Message update rate to 1 HZ using 9600 as Baudrate
- #define FREQUENCY 1
+#define FREQUENCY 1
 
 // Define MESSAGES as GPS_NMEA_GGL since only this message is valid for displaying on LCD, logging into SD Card and also calculating the distance
 #define MESSAGES GPS_NMEA_GGL
@@ -32,9 +35,25 @@ char pLongSD[COORDINATE_BUFFER_SIZE];
 
 char pDistance[20];
 
+// Initialize all devices
+void initDevices(void) {
+    
+    spi_init();
+
+    /* Hardware initialisation */
+    gps_init(FREQUENCY, MESSAGES);
+
+    /* LCD and SD Initialisation */
+    // code goes here
+
+}
+
+
 // Main function for the whole software
 int main(void)
 {
+
+    _delay_ms(100);     //delay for VCC stabilization
 
     // Activate interrupts
     sei(); 
@@ -45,11 +64,7 @@ int main(void)
     /* Disabling unwanted modules */
     // code goes here
 
-    /* Hardware initialisation */
-    gps_init(FREQUENCY, MESSAGES);
-
-    /* LCD and SD Initialisation */
-    // code goes here
+    initDevices();      // Call initalisation function
 
     // Keep track of received messages
     uint8_t messageCount = 0;
