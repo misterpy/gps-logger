@@ -22,7 +22,7 @@
 #define UART_1 1
 
 // Size of the input buffer in bytes
-#define UART_RECIEVE_BUFFER_SIZE 128
+#define UART_RECEIVE_BUFFER_SIZE 128
     
 // Size of the output buffer in bytes
 #define UART_TRANSMIT_BUFFER_SIZE 32
@@ -38,7 +38,7 @@ Parameter pUbr is a 16-bit integer containing the baudrate configuration value
 Takes a character from the input buffer and returns it (FIFO).
 Return the first not yet processed byte
 */
-    unsigned char uart_recieveChar();
+    unsigned char uart_receiveChar();
 
 /*
 Takes a string from the input buffer and writes it into pResult.
@@ -47,7 +47,7 @@ Parameter pResult is a pointer to the output array.
 Parameter pResultSize is an integer containing the size of the output array.
 Return the count of actually returned characters.
 */
-    uint8_t uart_recieveString(char* pResult, uint8_t pResultSize);
+    uint8_t uart_receiveString(char* pResult, uint8_t pResultSize);
 
 /*
 Checks if there is unprocessed data in the input buffer.

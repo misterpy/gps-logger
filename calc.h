@@ -35,10 +35,10 @@
 
 	Parameter pLatSDOut and pLongSDOut will be the coordinate read from the SD card.
 
-	!!! Note: Both NMEA message recieve from GPS module and read from SD Card
+	!!! Note: Both NMEA message receive from GPS module and read from SD Card
 	need to be in the same format.
 
-	Parameter pNEMAIn is the array of NMEA message recieve from GPS module.
+	Parameter pNEMAIn is the array of NMEA message receive from GPS module.
 
 	Parameter pSDBuffIn is the array of NMEA message read from SD card.
 

@@ -171,7 +171,7 @@ uint8_t gps_checkNMEA(const char* pSentence, uint8_t pMessageType, char* pPrefix
 
 uint8_t gps_getNMEA(char* pOutput, uint8_t pMaxLength) {
     // A dollar sign indicates the start of a NMEA sentence
-    while(uart_recieveChar() != '$') {
+    while(uart_receiveChar() != '$') {
         // burn energy
         _delay_ms(1);
     }
@@ -187,7 +187,7 @@ uint8_t gps_getNMEA(char* pOutput, uint8_t pMaxLength) {
           // burn energy
         }
         
-        inChar = uart_recieveChar();
+        inChar = uart_receiveChar();
 
         pOutput[i++] = inChar;
     } while((inChar != LF) && (i < (pMaxLength-1)));

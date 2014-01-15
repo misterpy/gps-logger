@@ -13,7 +13,7 @@
 #define MESSAGES GPS_NMEA_GGL
 
 // This array will store the actual value of NMEA message
-// recieve from the GPS module.
+// receive from the GPS module.
 char nmeaBuf[128];
 
 // This array will store the initial value read from SD Card

@@ -4,11 +4,11 @@
 #include <avr/interrupt.h>
 
 /// FIFO input buffer
-static volatile char uart_recieveBuf[UART_INPUT_BUFFER_SIZE];
+static volatile char uart_receiveBuf[UART_INPUT_BUFFER_SIZE];
 /// Index of the last character that has been read in the input buffer
-static volatile uint8_t uart_recieveBufRead = 0;
+static volatile uint8_t uart_receiveBufRead = 0;
 /// Index of the last charachter that has been written in the input buffer
-static volatile uint8_t uart_recieveBufWrite = 0;
+static volatile uint8_t uart_receiveBufWrite = 0;
 
 /// FIFO output buffer
 static volatile char uart_transmitBuf[UART_OUTPUT_BUFFER_SIZE];
@@ -28,27 +28,27 @@ void uart_init(uint16_t pUbr) {
     // the frame configuration is not changed since the default setting is needed
 }
 
-unsigned char uart_recieveChar() {
-    if (uart_recieveBufRead != uart_recieveBufWrite) {
+unsigned char uart_receiveChar() {
+    if (uart_receiveBufRead != uart_receiveBufWrite) {
         // increment reading pointer while catching a possible array overflow
-        if (++uart_recieveBufRead >= UART_RECIEVE_BUFFER_SIZE) {
-            uart_recieveBufRead = 0;
+        if (++uart_receiveBufRead >= UART_RECEIVE_BUFFER_SIZE) {
+            uart_receiveBufRead = 0;
         }
 
-        return uart_recieveBuf[uart_recieveBufRead];
+        return uart_receiveBuf[uart_receiveBufRead];
     }
 
     return '\0';
 }
 
 uint8_t uart_hasData() {
-    return uart_recieveBufRead != uart_recieveBufWrite;
+    return uart_receiveBufRead != uart_receiveBufWrite;
 }
 
-uint8_t uart_recieveString(char* pResult, uint8_t pResultSize) {
+uint8_t uart_receiveString(char* pResult, uint8_t pResultSize) {
     uint8_t currentChar = 0;
     while(currentChar < pResultSize) {
-        pResult[currentChar++] = uart_recieveChar();
+        pResult[currentChar++] = uart_receiveChar();
         if ((!uart_hasData()) || (pResult[currentChar - 1] == LF)) {
             break;
         }
@@ -95,7 +95,7 @@ void uart_transmitString(const char* pData) {
 }
 
 void uart_clearBuf() {
-    uart_recieveBufRead = uart_recieveBufWrite;
+    uart_receiveBufRead = uart_receiveBufWrite;
 }
 
 /*
@@ -105,16 +105,16 @@ If the buffer is full, characters may be discarded.
 */
 
 ISR(USART1_RX_vect) {
-    if(uart_recieveBufWrite+1 >= UART_RECIEVE_BUFFER_SIZE) {
+    if(uart_receiveBufWrite+1 >= UART_RECEIVE_BUFFER_SIZE) {
             // writing pointer is at the end of the buffer array, next index will be 0
-            if(uart_recieveBufRead != 0) {
-                uart_recieveBufWrite = 0;
-                uart_recieveBuf[uart_recieveBufWrite] = UDR1;
+            if(uart_receiveBufRead != 0) {
+                uart_receiveBufWrite = 0;
+                uart_receiveBuf[uart_receiveBufWrite] = UDR1;
                 return;
             }
     } else {
-        if(uart_recieveBufWrite+1 != uart_recieveBufRead) {
-            uart_recieveBuf[++uart_recieveBufWrite] = UDR1;
+        if(uart_receiveBufWrite+1 != uart_receiveBufRead) {
+            uart_receiveBuf[++uart_receiveBufWrite] = UDR1;
             return;
         }
     }
