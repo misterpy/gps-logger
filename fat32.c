@@ -169,7 +169,7 @@ struct dir_Structure* findFiles (unsigned char flag, unsigned char *fileName){
                 dir = (struct dir_Structure *) &buffer[i];
                 if(dir->name[0] == EMPTY){ //indicates end of the file list of the directory
                     if(flag == DELETE)
-                        transmitString_F(PSTR("File does not exist!"));
+                        uart_transmitString(PSTR("File does not exist!"));
                     return 0;   
                 }
                 if((dir->name[0] != DELETED) && (dir->attrib != ATTR_LONG_NAME)){
@@ -187,7 +187,7 @@ struct dir_Structure* findFiles (unsigned char flag, unsigned char *fileName){
                             }	
                             else{    //when flag = DELETE
                                 TX_NEWLINE;
-                                transmitString_F(PSTR("Deleting.."));
+                                uart_transmitString(PSTR("Deleting.."));
                                 TX_NEWLINE;
                                 TX_NEWLINE;
                                 firstCluster = (((unsigned long) dir->firstClusterHI) << 16) | dir->firstClusterLO;
@@ -208,7 +208,7 @@ struct dir_Structure* findFiles (unsigned char flag, unsigned char *fileName){
                                     nextCluster = getSetNextCluster (firstCluster, GET, 0);
                                     getSetNextCluster (firstCluster, SET, 0);
                                     if(nextCluster > 0x0ffffff6){
-                                        transmitString_F(PSTR("File deleted!"));
+                                        uart_transmitString(PSTR("File deleted!"));
                                         return 0;
                                     }
                                     firstCluster = nextCluster;
@@ -222,14 +222,14 @@ struct dir_Structure* findFiles (unsigned char flag, unsigned char *fileName){
                             if(j == 8) transmitByte(' ');
                             transmitByte (dir->name[j]);
                         }
-                        transmitString_F (PSTR("   "));
+                        uart_transmitString (PSTR("   "));
                         if((dir->attrib != 0x10) && (dir->attrib != 0x08)){
-                            transmitString_F (PSTR("FILE" ));
-                            transmitString_F (PSTR("   "));
+                            uart_transmitString (PSTR("FILE" ));
+                            uart_transmitString (PSTR("   "));
                             // deleted function displayMemory (LOW, dir->fileSize); - not needed
                         }
                         else
-                            transmitString_F ((dir->attrib == 0x10)? PSTR("DIR") : PSTR("ROOT"));
+                            uart_transmitString ((dir->attrib == 0x10)? PSTR("DIR") : PSTR("ROOT"));
                     }
                 }
             }
@@ -240,7 +240,7 @@ struct dir_Structure* findFiles (unsigned char flag, unsigned char *fileName){
         if(cluster > 0x0ffffff6)
             return 0;
         if(cluster == 0){
-            transmitString_F(PSTR("Error in getting cluster"));
+            uart_transmitString(PSTR("Error in getting cluster"));
             return 0;
         }
     }
@@ -296,7 +296,7 @@ unsigned char readFile (unsigned char flag, unsigned char *fileName){
         }
         cluster = getSetNextCluster (cluster, GET, 0);
         if(cluster == 0){
-            transmitString_F(PSTR("Error in getting cluster"));
+            uart_transmitString(PSTR("Error in getting cluster"));
             return 0;
         }
     }
@@ -317,7 +317,7 @@ unsigned char convertFileName (unsigned char *fileName){
             break;
 
     if(j>8){
-        transmitString_F(PSTR("Invalid fileName.."));
+        uart_transmitString(PSTR("Invalid fileName.."));
         return 1;
     }
 
@@ -388,7 +388,7 @@ unsigned char writeFile (unsigned char *fileName){
         cluster = searchNextFreeCluster(cluster);
         if(cluster == 0){
             TX_NEWLINE;
-            transmitString_F(PSTR(" No free cluster!"));
+            uart_transmitString(PSTR(" No free cluster!"));
             return 1;
         }
         getSetNextCluster(cluster, SET, EOF);   //last cluster of the file, marked EOF
@@ -446,7 +446,7 @@ unsigned char writeFile (unsigned char *fileName){
 
         if(cluster == 0){
             TX_NEWLINE;
-            transmitString_F(PSTR(" No free cluster!"));
+            uart_transmitString(PSTR(" No free cluster!"));
             return 1;
         }
 
@@ -539,12 +539,12 @@ unsigned char writeFile (unsigned char *fileName){
                 getSetNextCluster(cluster, SET, EOF);  //set the new cluster as end of the root directory
             } 
             else{	
-	           transmitString_F(PSTR("End of Cluster Chain"));
+	           uart_transmitString(PSTR("End of Cluster Chain"));
                return 1;
             }
         }
         if(cluster == 0){
-            transmitString_F(PSTR("Error in getting cluster"));
+            uart_transmitString(PSTR("Error in getting cluster"));
             return 1;
         }
         prevCluster = cluster;
