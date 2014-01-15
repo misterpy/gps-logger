@@ -50,8 +50,9 @@ void initDevices(void) {
 
 
 // Main function for the whole software
-int main(void)
-{
+int main(void){
+
+    unsigned char error; //used to check for errors in initialisation phases
 
     _delay_ms(100);     //delay for VCC stabilization
 
@@ -65,6 +66,27 @@ int main(void)
     // code goes here
 
     initDevices();      // Call initalisation function
+
+    for (i=0; i<10; i++){
+        error = SD_init();
+        if(!error)
+            break;
+    }
+
+    if(error){
+        if(error == 1) transmitString_F(PSTR("SD card not detected.."));    //replace transmitString_F with transmit function that we use to transfer strings to LCD
+        if(error == 2) transmitString_F(PSTR("Card Initialization failed.."));
+        blinkRedLED();  //replace this with our LED function!
+    }
+
+    error = getBootSectorData (); //read boot sector of SD and keep necessary data in global variables
+
+    if(error){
+        transmitString_F (PSTR("\n\rFAT32 not found!"));  //FAT32 incompatible drive
+        blinkRedLED();  //replace this with our LED function!
+    }
+
+    SPI_HIGH_SPEED;   //SCK - 4 MHz as defined in spi.h
 
     // Keep track of received messages
     uint8_t messageCount = 0;
