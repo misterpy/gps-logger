@@ -57,9 +57,9 @@
  *  @name  Definitions for Display Size 
  *  Change these definitions to adapt setting to your display
  */
-#define LCD_LINES           2     /**< number of visible lines of the display */
-#define LCD_DISP_LENGTH    16     /**< visibles characters per line of the display */
-#define LCD_LINE_LENGTH  0x40     /**< internal line length of the display    */
+#define LCD_LINES           4     /**< number of visible lines of the display */
+#define LCD_DISP_LENGTH    20     /**< visibles characters per line of the display */
+#define LCD_LINE_LENGTH  0x50     /**< internal line length of the display    */
 #define LCD_START_LINE1  0x00     /**< DDRAM address of first char of line 1 */
 #define LCD_START_LINE2  0x40     /**< DDRAM address of first char of line 2 */
 #define LCD_START_LINE3  0x14     /**< DDRAM address of first char of line 3 */
