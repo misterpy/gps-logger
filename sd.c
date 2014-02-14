@@ -105,9 +105,7 @@ unsigned char SD_sendCommand(unsigned char cmd,unsigned long arg){
 
     if(SDHC_flag == 0)		
         if( cmd == READ_SINGLE_BLOCK     ||
-            cmd == READ_MULTIPLE_BLOCKS  ||
             cmd == WRITE_SINGLE_BLOCK    ||
-            cmd == WRITE_MULTIPLE_BLOCKS ||
             cmd == ERASE_BLOCK_START_ADDR|| 
             cmd == ERASE_BLOCK_END_ADDR )
         {

@@ -456,19 +456,11 @@ unsigned char writeFile (unsigned char *fileName){
 
     getSetFreeCluster (NEXT_FREE, SET, cluster); //update FSinfo next free cluster entry
 
-    error = getDateTime_FAT();    //get current date & time from the RTC
-    if(error){
-        dateFAT = 0;
-        timeFAT = 0;
-    }
-
     if(appendFile){  //executes this loop if file is to be appended
         SD_readSingleBlock (appendFileSector);    
         dir = (struct dir_Structure *) &buffer[appendFileLocation]; 
 
         dir->lastAccessDate = 0;   //date of last access ignored
-        dir->writeTime = timeFAT;  //setting new time of last write, obtained from RTC
-        dir->writeDate = dateFAT;  //setting new date of last write, obtained from RTC
         extraMemory = fileSize - dir->fileSize;
         dir->fileSize = fileSize;
         SD_writeSingleBlock (appendFileSector);
@@ -508,11 +500,11 @@ unsigned char writeFile (unsigned char *fileName){
                     dir->attrib = ATTR_ARCHIVE;	//settting file attribute as 'archive'
                     dir->NTreserved = 0;			//always set to 0
                     dir->timeTenth = 0;			//always set to 0
-                    dir->createTime = timeFAT; 	//setting time of file creation, obtained from RTC
-                    dir->createDate = dateFAT; 	//setting date of file creation, obtained from RTC
+                    dir->createTime = 0; 	//setting time of file creation, obtained from RTC
+                    dir->createDate = 0; 	//setting date of file creation, obtained from RTC
                     dir->lastAccessDate = 0;   	//date of last access ignored
-                    dir->writeTime = timeFAT;  	//setting new time of last write, obtained from RTC
-                    dir->writeDate = dateFAT;  	//setting new date of last write, obtained from RTC
+                    dir->writeTime = 0;  	//setting new time of last write, obtained from RTC
+                    dir->writeDate = 0;  	//setting new date of last write, obtained from RTC
                     dir->firstClusterHI = firstClusterHigh;
                     dir->firstClusterLO = firstClusterLow;
                     dir->fileSize = fileSize;

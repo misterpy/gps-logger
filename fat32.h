@@ -1,7 +1,7 @@
 // FAT32 file system header
 
-#ifndef _FAT32_H_
-#define _FAT32_H_
+#ifndef FAT32_H
+#define FAT32_H
 
 //Structure to access Master Boot Record for getting info about partioions
 struct MBRinfo_Structure{

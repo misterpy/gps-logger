@@ -1,7 +1,7 @@
 // SD Card Interfacing - data transfer header
 
-#ifndef _SD_H_
-#define _SD_H_
+#ifndef SD_H
+#define SD_H
 
 //Use following macro if you don't want to activate the multiple block access functions
 //those functions are not required for FAT32

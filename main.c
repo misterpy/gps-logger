@@ -52,7 +52,7 @@ void initDevices(void) {
 // Main function for the whole software
 int main(void){
 
-    unsigned char error; //used to check for errors in initialisation phases
+    unsigned char error, i; //used to check for errors in initialisation phases
 
     _delay_ms(100);     //delay for VCC stabilization
 

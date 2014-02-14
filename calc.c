@@ -1,9 +1,12 @@
 // calc.c
 // The code here is written by Hidayat Halim (misterpy)
+#include <avr/io.h>
+#include "calc.h"
+#include "global.h"
 
 // this flags is needed for distance calculation
-bool flagSouth = FALSE;
-bool flagWest = FALSE;
+int flagSouth = FALSE;
+int flagWest = FALSE;
 
 void getCoordinate(char* pInput, char* pLatOut, char* pLongOut){
 
@@ -12,8 +15,8 @@ void getCoordinate(char* pInput, char* pLatOut, char* pLongOut){
 	int loop=7;
 
 	// flag for controlling loop
-	bool hasBoth = FALSE;
-	bool hasLat = FALSE;
+	int hasBoth = FALSE;
+	int hasLat = FALSE;
 
 	do{
 		if(!hasLat){

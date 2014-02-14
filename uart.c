@@ -2,16 +2,18 @@
 
 #include "uart.h"
 #include <avr/interrupt.h>
+#include "global.h"
+
 
 /// FIFO input buffer
-static volatile char uart_receiveBuf[UART_INPUT_BUFFER_SIZE];
+static volatile char uart_receiveBuf[UART_RECEIVE_BUFFER_SIZE];
 /// Index of the last character that has been read in the input buffer
 static volatile uint8_t uart_receiveBufRead = 0;
 /// Index of the last charachter that has been written in the input buffer
 static volatile uint8_t uart_receiveBufWrite = 0;
 
 /// FIFO output buffer
-static volatile char uart_transmitBuf[UART_OUTPUT_BUFFER_SIZE];
+static volatile char uart_transmitBuf[UART_TRANSMIT_BUFFER_SIZE];
 /// Index of the last character that has been read in the output buffer
 static volatile uint8_t uart_transmitBufRead = 0;
 /// Index of the last character that has been written in the output buffer

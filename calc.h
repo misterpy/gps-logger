@@ -1,8 +1,6 @@
 #ifndef CALC_H
 #define CALC_H
 
-#include "global.h"
-
 // Coordinate buffer size
 #define COORDINATE_BUFFER_SIZE 11
 
