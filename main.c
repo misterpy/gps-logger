@@ -70,6 +70,9 @@ int main(void){
     /* move cursor to correct position still missing for all LCD Put String functions */
     lcd_puts ("--- GPS LOGGER ---");
 
+    /* LCD OUTPUT of the static text: location, destination, distance in rows  */
+    // code here
+
     for (i=0; i<10; i++){
         error = SD_init();
         if(!error)
@@ -113,6 +116,8 @@ int main(void){
 
             /* logging the data into SD Card */
             // code goes here
+            // still need to resolve issue with UART function
+            // data comes from transmitString buffer, but not ours so far
         }     
         
         sleep_mode();
