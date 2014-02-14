@@ -67,6 +67,7 @@ int main(void){
 
     initDevices();      // Call initalisation function
 
+    /* move cursor to correct position still missing for all LCD Put String functions */
     lcd_puts ("--- GPS LOGGER ---");
 
     for (i=0; i<10; i++){
