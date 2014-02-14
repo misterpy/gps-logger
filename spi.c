@@ -2,6 +2,7 @@
 
 #include <avr/io.h>
 #include "spi.h"
+#include "global.h"
 
 //Initialize SPI for SD card
 //clock rate: i.e. 125Khz

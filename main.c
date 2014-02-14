@@ -13,11 +13,11 @@
 #define FREQUENCY 1
 
 // Define MESSAGES as GPS_NMEA_GGL since only this message is valid for displaying on LCD, logging into SD Card and also calculating the distance
-#define MESSAGES GPS_NMEA_GGL
+#define MESSAGES GPS_NMEA_GLL
 
 // This array will store the actual value of NMEA message
 // receive from the GPS module.
-char nmeaBuf[128];
+char nmeabuff[128];
 
 // This array will store the initial value read from SD Card
 char sdbuff[128];
@@ -43,7 +43,7 @@ void initDevices(void) {
     /* Hardware initialisation */
     gps_init(FREQUENCY, MESSAGES);
 
-    /* LCD and SD Initialisation */
+    /* LCD Initialisation */
     // code goes here
 
 }
@@ -67,6 +67,8 @@ int main(void){
 
     initDevices();      // Call initalisation function
 
+    lcd_puts ("--- GPS LOGGER ---");
+
     for (i=0; i<10; i++){
         error = SD_init();
         if(!error)
@@ -74,15 +76,15 @@ int main(void){
     }
 
     if(error){
-        if(error == 1) transmitString_F(PSTR("SD card not detected.."));    //replace transmitString_F with transmit function that we use to transfer strings to LCD
-        if(error == 2) transmitString_F(PSTR("Card Initialization failed.."));
+        if(error == 1) lcd_puts("SD card not detected..");    //replace transmitString_F with transmit function that we use to transfer strings to LCD
+        if(error == 2) lcd_puts("Card Initialization failed..");
         blinkRedLED();  //replace this with our LED function!
     }
 
     error = getBootSectorData (); //read boot sector of SD and keep necessary data in global variables
 
     if(error){
-        transmitString_F (PSTR("\n\rFAT32 not found!"));  //FAT32 incompatible drive
+    	lcd_puts ("\n\rFAT32 not found!");  //FAT32 incompatible drive
         blinkRedLED();  //replace this with our LED function!
     }
 
@@ -92,11 +94,15 @@ int main(void){
     uint8_t messageCount = 0;
 
     /* Read the initial value from SD card and store it in sdbuff[128] */
-    // code goes here
+    error = readFile (READ, "in");
+
+	if(error){
+		sdbuff = "n/a";
+	}
 
     while(1) {
         // We'll write the data only if it contains a valid position
-        if (gps_getNMEA(nmeaBuf, 128) & GPS_NMEA_VALID) {
+        if (gps_getNMEA(nmeabuff, 128) & GPS_NMEA_VALID) {
 
             /* Calculating distance */
             getDistance(nmeabuff, sdbuff, pLatGPS, pLongGPS, pLatSD, pLongSD, pDistance);

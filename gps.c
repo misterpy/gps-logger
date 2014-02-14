@@ -1,6 +1,10 @@
 // Most of the code is from https://github.com/marmat/gps-logger/ and edited to suite my purpose
 
-#include "modules/gps.h"
+#include <avr/io.h>
+
+#include "gps.h"
+#include "global.h"
+#include "uart.h"
 
 void gps_init(uint8_t pFrequency, uint8_t pMessages) {
 

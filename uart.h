@@ -3,8 +3,6 @@
 #ifndef UART_H
 #define UART_H
 
-#include "global.h"
-
 #define UART_ASYNC 0x00
 #define UART_SYNC 0x40
 #define UART_SPI 0xC0
