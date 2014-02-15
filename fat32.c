@@ -219,8 +219,8 @@ struct dir_Structure* findFiles (unsigned char flag, unsigned char *fileName){
                     else{  //when flag = GET_LIST
                         TX_NEWLINE;
                         for(j=0; j<11; j++){
-                            if(j == 8) transmitByte(' ');
-                            transmitByte (dir->name[j]);
+                            if(j == 8) uart_transmitChar(' ');
+                            uart_transmitChar (dir->name[j]);
                         }
                         uart_transmitString (PSTR("   "));
                         if((dir->attrib != 0x10) && (dir->attrib != 0x08)){
@@ -289,7 +289,7 @@ unsigned char readFile (unsigned char flag, unsigned char *fileName){
             SD_readSingleBlock(firstSector + j);
     
             for(k=0; k<512; k++){
-                transmitByte(buffer[k]);
+                uart_transmitChar(buffer[k]);
                 if ((byteCounter++) >= fileSize )
                     return 0;
             }

@@ -1,6 +1,3 @@
-// Most of the code is from https://github.com/marmat/gps-logger/ and edited to suite my purpose
-
-
 #include <avr/sleep.h>
 #include "global.h"
 #include "gps.h"
@@ -77,9 +74,6 @@ int main(void){
     lcd_gotoxy(0,2);	// Go to 3rd row 1st column
     lcd_puts("CSE2 Projekt, CE");
 
-    /* LCD OUTPUT of the static text: location, destination, distance in rows  */
-    // code here
-
     for (i=0; i<10; i++){
         error = SD_init();
         if(!error)
@@ -90,9 +84,8 @@ int main(void){
         _delay_ms(500);		// Delay before clearing the screen again
         lcd_clrscr();
         lcd_home();
-        if(error == 1) lcd_puts("No SD Card detected");    //replace transmitString_F with transmit function that we use to transfer strings to LCD
+        if(error == 1) lcd_puts("No SD Card detected");
         if(error == 2) lcd_puts("Card init failed");
-        blinkRedLED();  //replace this with our LED function! Do we have LED? XD No we don't!
     }
 
     error = getBootSectorData (); //read boot sector of SD and keep necessary data in global variables
@@ -100,7 +93,6 @@ int main(void){
     if(error){
     	lcd_gotoxy(0,1);
     	lcd_puts ("FAT32 not found!");  //FAT32 incompatible drive
-        blinkRedLED();  //replace this with our LED function!
         _delay_ms(500);
     }
     else{
@@ -121,7 +113,7 @@ int main(void){
 	if(error){
 		sdbuff = "n/a";
 		lcd_gotoxy(0,1);
-		lcd_puts("No init val from sd");
+		lcd_puts("No init val from SD");
 		_delay_ms(100);
 	}
 	else{
@@ -140,7 +132,7 @@ int main(void){
         // We'll write the data only if it contains a valid position
         if (gps_getNMEA(nmeabuff, 128) & GPS_NMEA_VALID) {
 
-        	int disp_loop, arr_loop, pos_loop;
+        	int disp_loop, arr_loop, pos_loop, sd_loop;
 
             /* Calculating distance */
             getDistance(nmeabuff, sdbuff, pLatGPS, pLongGPS, pLatSD, pLongSD, pDistance);
@@ -192,13 +184,27 @@ int main(void){
 					}
             	}
             	_delay_ms(400);
-
             }
 
-            /* logging the data into SD Card */
-            // code goes here
-            // still need to resolve issue with UART function
-            // data comes from transmitString buffer, but not ours so far
+            /* Logging the data on the SD card */
+            for(sd_loop=0; sd_loop < COORDINATE_BUFFER_SIZE; sd_loop++){
+                dataString[sd_loop] = pLatGPS[sd_loop];
+            }
+            dataString[i++] = ',';
+
+            for(i=0; i < COORDINATE_BUFFER_SIZE; i++){
+                dataString[sd_loop] = pLongGPS[sd_loop];
+            }
+            dataString[i++] = ',';
+
+            error = writeFile(OUT);
+
+            if(error){
+                lcd_home();
+                lcd_puts("Error writing output");
+            }
+
+
         }
         
         sleep_mode();
