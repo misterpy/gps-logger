@@ -111,7 +111,6 @@ int main(void){
     error = readFile (READ, "in");
 
 	if(error){
-		sdbuff = "n/a";
 		lcd_gotoxy(0,1);
 		lcd_puts("No init val from SD");
 		_delay_ms(100);
@@ -119,6 +118,7 @@ int main(void){
 	else{
 		lcd_home();
 		lcd_puts("Starting");
+		_delay_ms(2000);
         lcd_clrscr();
 		lcd_gotoxy(0,1);
 		lcd_puts("Lat:");
@@ -144,22 +144,22 @@ int main(void){
             		lcd_puts("Destination");
             		for(arr_loop = 0, pos_loop = 4; arr_loop < COORDINATE_BUFFER_SIZE; arr_loop++){
             			lcd_gotoxy(pos_loop,1);
-            			while(!(pLatSD(arr_loop) == '\0')){
-            				lcd_putc(pLatSD(arr_loop));
+            			while(!(pLatSD[arr_loop] == '\0')){
+            				lcd_putc(pLatSD[arr_loop]);
             				pos_loop++;
             			}
             		}
             		for(arr_loop = 0, pos_loop = 4; arr_loop < COORDINATE_BUFFER_SIZE; arr_loop++){
             		    lcd_gotoxy(pos_loop,2);
-            		    while(!(pLongSD(arr_loop) == '\0')){
-            		    	lcd_putc(pLongSD(arr_loop));
+            		    while(!(pLongSD[arr_loop] == '\0')){
+            		    	lcd_putc(pLongSD[arr_loop]);
             		    	pos_loop++;
             		    }
             		}
             		for(arr_loop = 0, pos_loop = 4; arr_loop < COORDINATE_BUFFER_SIZE; arr_loop++){
             			lcd_gotoxy(pos_loop,3);
-            			while(!(pDistance(arr_loop) == '\0')){
-            				lcd_putc(pDistance(arr_loop));
+            			while(!(pDistance[arr_loop] == '\0')){
+            				lcd_putc(pDistance[arr_loop]);
             				pos_loop++;
             			}
             		}
@@ -170,15 +170,15 @@ int main(void){
             		lcd_puts("Position   ");
             		for(arr_loop = 0, pos_loop = 4; arr_loop < COORDINATE_BUFFER_SIZE; arr_loop++){
 						lcd_gotoxy(pos_loop,1);
-						while(!(pLatGPS(arr_loop) == '\0')){
-							lcd_putc(pLatGPS(arr_loop));
+						while(!(pLatGPS[arr_loop] == '\0')){
+							lcd_putc(pLatGPS[arr_loop]);
 							pos_loop++;
 						}
 					}
 					for(arr_loop = 0, pos_loop = 4; arr_loop < COORDINATE_BUFFER_SIZE; arr_loop++){
 						lcd_gotoxy(pos_loop,2);
-						while(!(pLongGPS(arr_loop) == '\0')){
-							lcd_putc(pLongGPS(arr_loop));
+						while(!(pLongGPS[arr_loop] == '\0')){
+							lcd_putc(pLongGPS[arr_loop]);
 							pos_loop++;
 						}
 					}
@@ -197,7 +197,7 @@ int main(void){
             }
             dataString[i++] = ',';
 
-            error = writeFile(OUT);
+            error = writeFile("OUT");
 
             if(error){
                 lcd_home();

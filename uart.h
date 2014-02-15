@@ -25,12 +25,21 @@
 // Size of the output buffer in bytes
 #define UART_TRANSMIT_BUFFER_SIZE 32
 
+/// Macro which generates a configuration byte for the UART register
+#define UART_CONFIGURE(pMode, pBits, pStop, pParity) pMode | pBits | pStop | pParity
+
+/// Macro which calculates the correct value for the baudrate register
+#define UART_CALCULATE_BAUD(pFrequency, pBaudrate) (pFrequency / (16 * pBaudrate)) - 1
+
+/// Macro for sending a "new line"-sequence
+#define UART_NEWLINE() uart_setChar(CR); uart_setChar(LF);
+
 /*
 Initializes the UART-port.
 Parameter pConfig is the UART configuration byte
 Parameter pUbr is a 16-bit integer containing the baudrate configuration value
 */
-    void uart_init(uint16_t pUbr);
+    void uart_init(unsigned int pUbr);
 
 /*
 Takes a character from the input buffer and returns it (FIFO).
@@ -45,14 +54,14 @@ Parameter pResult is a pointer to the output array.
 Parameter pResultSize is an integer containing the size of the output array.
 Return the count of actually returned characters.
 */
-    uint8_t uart_receiveString(char* pResult, uint8_t pResultSize);
+    unsigned char uart_receiveString(char* pResult, unsigned char pResultSize);
 
 /*
 Checks if there is unprocessed data in the input buffer.
 This method can be used in order to prevent a blockage of the cpu when trying to read from an empty input buffer.
 Return TRUE if data is available, otherwise FALSE
 */
-    uint8_t uart_hasData();
+    unsigned char uart_hasData();
 
 /*
 Sends a character.

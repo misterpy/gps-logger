@@ -37,7 +37,7 @@
 #define ON     1
 #define OFF    0
 
-#define TX_NEWLINE {transmitByte(0x0d); transmitByte(0x0a);} /*transferred from UART_sd.h*/
+#define TX_NEWLINE {uart_transmitChar(0x0d); uart_transmitChar(0x0a);} /*transferred from UART_sd.h*/
 
 
 volatile unsigned long startBlock, totalBlocks; 

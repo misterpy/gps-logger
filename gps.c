@@ -218,7 +218,7 @@ uint8_t gps_getNMEA(char* pOutput, uint8_t pMaxLength) {
                     return gps_checkNMEA(pOutput, GPS_NMEA_GLL, "$GPGLL", 6, "A", TRUE);
                 default:
                     return GPS_NMEA_UNKNOWN;
-            } //btw: no breaks are necessary as every case returns sth.
+            }//btw: no breaks are necessary as every case returns sth.
         case 'R': //only RMC left
             return gps_checkNMEA(pOutput, GPS_NMEA_RMC, "$GPRMC", 2, "A", TRUE);
         case 'V': //only VTG left

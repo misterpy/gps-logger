@@ -39,13 +39,14 @@
 
     #define RADIUS 6371
 
-    #include <stdint.h>
+    //#include <stdint.h>
     #include <stdlib.h>
     #include <avr/io.h>
     #include <avr/interrupt.h>
     #include <util/delay.h>
+	#include <avr/iom324p.h>
 
-    #include <stdio.h>
+
     #include <string.h>
     #include <math.h>
 

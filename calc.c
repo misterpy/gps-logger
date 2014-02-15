@@ -1,6 +1,5 @@
 // calc.c
 // The code here is written by Hidayat Halim (misterpy)
-#include <avr/io.h>
 #include "calc.h"
 #include "global.h"
 

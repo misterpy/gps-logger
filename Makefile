@@ -19,9 +19,11 @@
 
 DEVICE     = atmega324p
 CLOCK      = 7372800
-PROGRAMMER = #-c stk500v2 -P avrdoper
+PROGRAMMER = -c avrispmkII -P usb
+TARGET = main
 OBJECTS    = main.o
-FUSES      = -U hfuse:w:0xd9:m -U lfuse:w:0x24:m
+FUSES      = -U hfuse:w:0xd9:m -Ulfuse:w:0xcd:m
+SRC = main.c calc.c fat32.c global.c gps.c lcd.c sd.c spi.c uart.c
 
 # ATMega8 fuse bits used above (fuse bits for other devices are different!):
 # Example for 8 MHz internal oscillator
