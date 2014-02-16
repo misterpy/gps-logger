@@ -1,5 +1,5 @@
 // calc.c
-// The code here is written by Hidayat Halim (misterpy)
+
 #include "calc.h"
 #include "global.h"
 

@@ -1,4 +1,4 @@
-// Most of the code is from https://github.com/marmat/gps-logger/ and edited to suite my purpose
+//global.c
 
 #include "global.h"
 

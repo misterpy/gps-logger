@@ -1,4 +1,4 @@
-// Most of the code is from https://github.com/marmat/gps-logger/ and edited to suite my purpose
+//gps.h
 
 #ifndef GPS_H
 #define GPS_H

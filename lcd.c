@@ -1,27 +1,5 @@
-/****************************************************************************
- Title	:   HD44780U LCD library
- Author:    Peter Fleury <pfleury@gmx.ch>  http://jump.to/fleury
- File:	    $Id: lcd.c,v 1.14.2.2 2012/02/12 07:51:00 peter Exp $
- Software:  AVR-GCC 3.3 
- Target:    any AVR device, memory mapped mode only for AT90S4414/8515/Mega
+// lcd.c
 
- DESCRIPTION
-       Basic routines for interfacing a HD44780U-based text lcd display
-
-       Originally based on Volker Oth's lcd library,
-       changed lcd_init(), added additional constants for lcd_command(),
-       added 4-bit I/O mode, improved and optimized code.
-
-       Library can be operated in memory mapped mode (LCD_IO_MODE=0) or in 
-       4-bit IO port mode (LCD_IO_MODE=1). 8-bit IO port mode not supported.
-       
-       Memory mapped mode compatible with Kanda STK200, but supports also
-       generation of R/W signal through A8 address line.
-
- USAGE
-       See the C include lcd.h file for a description of each function
-       
-*****************************************************************************/
 #include <inttypes.h>
 #include <avr/io.h>
 #include <avr/pgmspace.h>
