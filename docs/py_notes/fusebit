@@ -1,0 +1,12 @@
+CKSEL 3..1		110
+CKSEL 0			1
+SUT 1..0		00
+
+
+Low Byte
+1100 1101  =  0xCD	use external crystal oscillator with maximum start delay
+0110 0010  =  0x62  (default)
+
+High Byte
+1001 1001  =  0x99  (default)
+1101 1001  =  0xD9  disable JTAG
