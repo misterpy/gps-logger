@@ -1,0 +1,2030 @@
+
+test_gps.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000090  00800100  0000094e  000009e2  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         0000094e  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          000001a4  00800190  00800190  00000a72  2**0
+                  ALLOC
+  3 .stab         000006cc  00000000  00000000  00000a74  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000097  00000000  00000000  00001140  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .comment      0000002f  00000000  00000000  000011d7  2**0
+                  CONTENTS, READONLY
+  6 .debug_aranges 00000178  00000000  00000000  00001206  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_info   00001784  00000000  00000000  0000137e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_abbrev 00000857  00000000  00000000  00002b02  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_line   000009f5  00000000  00000000  00003359  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_frame  000003b4  00000000  00000000  00003d50  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_str    000004f5  00000000  00000000  00004104  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_loc    00001281  00000000  00000000  000045f9  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_ranges 00000158  00000000  00000000  0000587a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__ctors_end>
+   4:	0c 94 5b 00 	jmp	0xb6	; 0xb6 <__bad_interrupt>
+   8:	0c 94 5b 00 	jmp	0xb6	; 0xb6 <__bad_interrupt>
+   c:	0c 94 5b 00 	jmp	0xb6	; 0xb6 <__bad_interrupt>
+  10:	0c 94 5b 00 	jmp	0xb6	; 0xb6 <__bad_interrupt>
+  14:	0c 94 5b 00 	jmp	0xb6	; 0xb6 <__bad_interrupt>
+  18:	0c 94 5b 00 	jmp	0xb6	; 0xb6 <__bad_interrupt>
+  1c:	0c 94 5b 00 	jmp	0xb6	; 0xb6 <__bad_interrupt>
+  20:	0c 94 5b 00 	jmp	0xb6	; 0xb6 <__bad_interrupt>
+  24:	0c 94 5b 00 	jmp	0xb6	; 0xb6 <__bad_interrupt>
+  28:	0c 94 5b 00 	jmp	0xb6	; 0xb6 <__bad_interrupt>
+  2c:	0c 94 5b 00 	jmp	0xb6	; 0xb6 <__bad_interrupt>
+  30:	0c 94 5b 00 	jmp	0xb6	; 0xb6 <__bad_interrupt>
+  34:	0c 94 5b 00 	jmp	0xb6	; 0xb6 <__bad_interrupt>
+  38:	0c 94 5b 00 	jmp	0xb6	; 0xb6 <__bad_interrupt>
+  3c:	0c 94 5b 00 	jmp	0xb6	; 0xb6 <__bad_interrupt>
+  40:	0c 94 5b 00 	jmp	0xb6	; 0xb6 <__bad_interrupt>
+  44:	0c 94 5b 00 	jmp	0xb6	; 0xb6 <__bad_interrupt>
+  48:	0c 94 5b 00 	jmp	0xb6	; 0xb6 <__bad_interrupt>
+  4c:	0c 94 5b 00 	jmp	0xb6	; 0xb6 <__bad_interrupt>
+  50:	0c 94 5b 00 	jmp	0xb6	; 0xb6 <__bad_interrupt>
+  54:	0c 94 5b 00 	jmp	0xb6	; 0xb6 <__bad_interrupt>
+  58:	0c 94 5b 00 	jmp	0xb6	; 0xb6 <__bad_interrupt>
+  5c:	0c 94 5b 00 	jmp	0xb6	; 0xb6 <__bad_interrupt>
+  60:	0c 94 5b 00 	jmp	0xb6	; 0xb6 <__bad_interrupt>
+  64:	0c 94 5b 00 	jmp	0xb6	; 0xb6 <__bad_interrupt>
+  68:	0c 94 5b 00 	jmp	0xb6	; 0xb6 <__bad_interrupt>
+  6c:	0c 94 5b 00 	jmp	0xb6	; 0xb6 <__bad_interrupt>
+  70:	0c 94 31 04 	jmp	0x862	; 0x862 <__vector_28>
+  74:	0c 94 76 04 	jmp	0x8ec	; 0x8ec <__vector_29>
+  78:	0c 94 5b 00 	jmp	0xb6	; 0xb6 <__bad_interrupt>
+
+0000007c <__ctors_end>:
+  7c:	11 24       	eor	r1, r1
+  7e:	1f be       	out	0x3f, r1	; 63
+  80:	cf ef       	ldi	r28, 0xFF	; 255
+  82:	d8 e0       	ldi	r29, 0x08	; 8
+  84:	de bf       	out	0x3e, r29	; 62
+  86:	cd bf       	out	0x3d, r28	; 61
+
+00000088 <__do_copy_data>:
+  88:	11 e0       	ldi	r17, 0x01	; 1
+  8a:	a0 e0       	ldi	r26, 0x00	; 0
+  8c:	b1 e0       	ldi	r27, 0x01	; 1
+  8e:	ee e4       	ldi	r30, 0x4E	; 78
+  90:	f9 e0       	ldi	r31, 0x09	; 9
+  92:	02 c0       	rjmp	.+4      	; 0x98 <__do_copy_data+0x10>
+  94:	05 90       	lpm	r0, Z+
+  96:	0d 92       	st	X+, r0
+  98:	a0 39       	cpi	r26, 0x90	; 144
+  9a:	b1 07       	cpc	r27, r17
+  9c:	d9 f7       	brne	.-10     	; 0x94 <__do_copy_data+0xc>
+
+0000009e <__do_clear_bss>:
+  9e:	23 e0       	ldi	r18, 0x03	; 3
+  a0:	a0 e9       	ldi	r26, 0x90	; 144
+  a2:	b1 e0       	ldi	r27, 0x01	; 1
+  a4:	01 c0       	rjmp	.+2      	; 0xa8 <.do_clear_bss_start>
+
+000000a6 <.do_clear_bss_loop>:
+  a6:	1d 92       	st	X+, r1
+
+000000a8 <.do_clear_bss_start>:
+  a8:	a4 33       	cpi	r26, 0x34	; 52
+  aa:	b2 07       	cpc	r27, r18
+  ac:	e1 f7       	brne	.-8      	; 0xa6 <.do_clear_bss_loop>
+  ae:	0e 94 37 03 	call	0x66e	; 0x66e <main>
+  b2:	0c 94 a5 04 	jmp	0x94a	; 0x94a <_exit>
+
+000000b6 <__bad_interrupt>:
+  b6:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000ba <hexCharToInt>:
+}
+
+uint8_t hexCharToInt(char pChar) {
+    // If character is lowercase (i.e. ASCII value greater or equal 97), "convert"
+    // it to uppercase
+    if (pChar >= 97) {
+  ba:	81 36       	cpi	r24, 0x61	; 97
+  bc:	08 f0       	brcs	.+2      	; 0xc0 <hexCharToInt+0x6>
+        pChar -= 32;
+  be:	80 52       	subi	r24, 0x20	; 32
+    }
+    
+    // If character is a letter (i.e. ASCII value greater or equal 65), substract
+    // a certain amount so that 'A' would be mapped to 10
+    if (pChar >= 65) {
+  c0:	81 34       	cpi	r24, 0x41	; 65
+  c2:	28 f0       	brcs	.+10     	; 0xce <hexCharToInt+0x14>
+        pChar -= 55;
+  c4:	87 53       	subi	r24, 0x37	; 55
+        return pChar < 16 ? pChar : 0;
+  c6:	80 31       	cpi	r24, 0x10	; 16
+  c8:	30 f0       	brcs	.+12     	; 0xd6 <hexCharToInt+0x1c>
+  ca:	80 e0       	ldi	r24, 0x00	; 0
+  cc:	08 95       	ret
+    } else {
+        // Otherwise map '0' to 0
+        pChar -= 48;
+  ce:	80 53       	subi	r24, 0x30	; 48
+        return pChar < 10 ? pChar : 0;
+  d0:	8a 30       	cpi	r24, 0x0A	; 10
+  d2:	08 f0       	brcs	.+2      	; 0xd6 <hexCharToInt+0x1c>
+  d4:	80 e0       	ldi	r24, 0x00	; 0
+    }
+        
+    return 0;
+  d6:	08 95       	ret
+
+000000d8 <gps_calculateCS>:
+}
+
+// Function to calculate the checksum of the message sent
+unsigned char gps_calculateCS(const unsigned char* pPayload, uint16_t pLength) {
+    unsigned char checkSum = 0;
+    for(uint8_t i = 0; i < pLength; i++) {
+  d8:	61 15       	cp	r22, r1
+  da:	71 05       	cpc	r23, r1
+  dc:	81 f0       	breq	.+32     	; 0xfe <gps_calculateCS+0x26>
+  de:	20 e0       	ldi	r18, 0x00	; 0
+  e0:	30 e0       	ldi	r19, 0x00	; 0
+  e2:	40 e0       	ldi	r20, 0x00	; 0
+    _delay_ms(50);
+}
+
+// Function to calculate the checksum of the message sent
+unsigned char gps_calculateCS(const unsigned char* pPayload, uint16_t pLength) {
+    unsigned char checkSum = 0;
+  e4:	50 e0       	ldi	r21, 0x00	; 0
+    for(uint8_t i = 0; i < pLength; i++) {
+        checkSum ^= pPayload[i];
+  e6:	fc 01       	movw	r30, r24
+  e8:	e2 0f       	add	r30, r18
+  ea:	f3 1f       	adc	r31, r19
+  ec:	20 81       	ld	r18, Z
+  ee:	52 27       	eor	r21, r18
+}
+
+// Function to calculate the checksum of the message sent
+unsigned char gps_calculateCS(const unsigned char* pPayload, uint16_t pLength) {
+    unsigned char checkSum = 0;
+    for(uint8_t i = 0; i < pLength; i++) {
+  f0:	4f 5f       	subi	r20, 0xFF	; 255
+  f2:	24 2f       	mov	r18, r20
+  f4:	30 e0       	ldi	r19, 0x00	; 0
+  f6:	26 17       	cp	r18, r22
+  f8:	37 07       	cpc	r19, r23
+  fa:	a8 f3       	brcs	.-22     	; 0xe6 <gps_calculateCS+0xe>
+  fc:	01 c0       	rjmp	.+2      	; 0x100 <gps_calculateCS+0x28>
+    _delay_ms(50);
+}
+
+// Function to calculate the checksum of the message sent
+unsigned char gps_calculateCS(const unsigned char* pPayload, uint16_t pLength) {
+    unsigned char checkSum = 0;
+  fe:	50 e0       	ldi	r21, 0x00	; 0
+    for(uint8_t i = 0; i < pLength; i++) {
+        checkSum ^= pPayload[i];
+    }
+    return checkSum;
+}
+ 100:	85 2f       	mov	r24, r21
+ 102:	08 95       	ret
+
+00000104 <gps_setParam>:
+
+unsigned char gps_setParam(unsigned char pCommand, unsigned char* pData, uint16_t pLength) {
+ 104:	ef 92       	push	r14
+ 106:	ff 92       	push	r15
+ 108:	0f 93       	push	r16
+ 10a:	1f 93       	push	r17
+ 10c:	cf 93       	push	r28
+ 10e:	df 93       	push	r29
+ 110:	e8 2e       	mov	r14, r24
+ 112:	8b 01       	movw	r16, r22
+ 114:	ea 01       	movw	r28, r20
+    // start sequence (2 byte)
+    uart_transmitChar(0xA0);
+ 116:	80 ea       	ldi	r24, 0xA0	; 160
+ 118:	0e 94 06 04 	call	0x80c	; 0x80c <uart_transmitChar>
+    uart_transmitChar(0xA1);
+ 11c:	81 ea       	ldi	r24, 0xA1	; 161
+ 11e:	0e 94 06 04 	call	0x80c	; 0x80c <uart_transmitChar>
+
+    // payload length (2 byte) == pLength + 1 because of message ID byte
+    uart_transmitChar(((pLength+1) & 0xFF00) >> 8);
+ 122:	9e 01       	movw	r18, r28
+ 124:	2f 5f       	subi	r18, 0xFF	; 255
+ 126:	3f 4f       	sbci	r19, 0xFF	; 255
+ 128:	83 2f       	mov	r24, r19
+ 12a:	0e 94 06 04 	call	0x80c	; 0x80c <uart_transmitChar>
+    uart_transmitChar((pLength+1) & 0x00FF);
+ 12e:	8c 2f       	mov	r24, r28
+ 130:	8f 5f       	subi	r24, 0xFF	; 255
+ 132:	0e 94 06 04 	call	0x80c	; 0x80c <uart_transmitChar>
+
+    // payload
+
+    // message ID (1 byte)
+    uart_transmitChar(pCommand);
+ 136:	8e 2d       	mov	r24, r14
+ 138:	0e 94 06 04 	call	0x80c	; 0x80c <uart_transmitChar>
+
+    // data (pLength byte)
+    for(uint8_t i = 0; i < pLength; i++) {
+ 13c:	20 97       	sbiw	r28, 0x00	; 0
+ 13e:	79 f0       	breq	.+30     	; 0x15e <gps_setParam+0x5a>
+ 140:	20 e0       	ldi	r18, 0x00	; 0
+ 142:	30 e0       	ldi	r19, 0x00	; 0
+ 144:	f1 2c       	mov	r15, r1
+        uart_transmitChar(pData[i]);
+ 146:	f8 01       	movw	r30, r16
+ 148:	e2 0f       	add	r30, r18
+ 14a:	f3 1f       	adc	r31, r19
+ 14c:	80 81       	ld	r24, Z
+ 14e:	0e 94 06 04 	call	0x80c	; 0x80c <uart_transmitChar>
+
+    // message ID (1 byte)
+    uart_transmitChar(pCommand);
+
+    // data (pLength byte)
+    for(uint8_t i = 0; i < pLength; i++) {
+ 152:	f3 94       	inc	r15
+ 154:	2f 2d       	mov	r18, r15
+ 156:	30 e0       	ldi	r19, 0x00	; 0
+ 158:	2c 17       	cp	r18, r28
+ 15a:	3d 07       	cpc	r19, r29
+ 15c:	a0 f3       	brcs	.-24     	; 0x146 <gps_setParam+0x42>
+        uart_transmitChar(pData[i]);
+    }
+
+    // checksum (1 byte)
+    uart_transmitChar(gps_calculateCS(pData, pLength) ^ pCommand);
+ 15e:	be 01       	movw	r22, r28
+ 160:	c8 01       	movw	r24, r16
+ 162:	0e 94 6c 00 	call	0xd8	; 0xd8 <gps_calculateCS>
+ 166:	8e 25       	eor	r24, r14
+ 168:	0e 94 06 04 	call	0x80c	; 0x80c <uart_transmitChar>
+
+    // stop sequence (2 byte)
+    uart_transmitChar(CR);
+ 16c:	8d e0       	ldi	r24, 0x0D	; 13
+ 16e:	0e 94 06 04 	call	0x80c	; 0x80c <uart_transmitChar>
+    uart_transmitChar(LF);
+ 172:	8a e0       	ldi	r24, 0x0A	; 10
+ 174:	0e 94 06 04 	call	0x80c	; 0x80c <uart_transmitChar>
+
+    return GPS_ACK;
+}
+ 178:	83 e8       	ldi	r24, 0x83	; 131
+ 17a:	df 91       	pop	r29
+ 17c:	cf 91       	pop	r28
+ 17e:	1f 91       	pop	r17
+ 180:	0f 91       	pop	r16
+ 182:	ff 90       	pop	r15
+ 184:	ef 90       	pop	r14
+ 186:	08 95       	ret
+
+00000188 <gps_init>:
+
+#include "gps.h"
+#include "global.h"
+#include "uart.h"
+
+void gps_init(uint8_t pFrequency, uint8_t pMessages) {
+ 188:	0f 93       	push	r16
+ 18a:	1f 93       	push	r17
+ 18c:	cf 93       	push	r28
+ 18e:	df 93       	push	r29
+ 190:	cd b7       	in	r28, 0x3d	; 61
+ 192:	de b7       	in	r29, 0x3e	; 62
+ 194:	2a 97       	sbiw	r28, 0x0a	; 10
+ 196:	0f b6       	in	r0, 0x3f	; 63
+ 198:	f8 94       	cli
+ 19a:	de bf       	out	0x3e, r29	; 62
+ 19c:	0f be       	out	0x3f, r0	; 63
+ 19e:	cd bf       	out	0x3d, r28	; 61
+ 1a0:	08 2f       	mov	r16, r24
+ 1a2:	16 2f       	mov	r17, r22
+
+    // initializes UART interface
+    uart_init(UART_CALCULATE_BAUD(F_CPU, GPS_BAUDRATE));
+ 1a4:	8f e2       	ldi	r24, 0x2F	; 47
+ 1a6:	90 e0       	ldi	r25, 0x00	; 0
+ 1a8:	0e 94 db 03 	call	0x7b6	; 0x7b6 <uart_init>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 1ac:	2f ef       	ldi	r18, 0xFF	; 255
+ 1ae:	8f e3       	ldi	r24, 0x3F	; 63
+ 1b0:	92 e0       	ldi	r25, 0x02	; 2
+ 1b2:	21 50       	subi	r18, 0x01	; 1
+ 1b4:	80 40       	sbci	r24, 0x00	; 0
+ 1b6:	90 40       	sbci	r25, 0x00	; 0
+ 1b8:	e1 f7       	brne	.-8      	; 0x1b2 <gps_init+0x2a>
+ 1ba:	00 c0       	rjmp	.+0      	; 0x1bc <gps_init+0x34>
+ 1bc:	00 00       	nop
+
+    _delay_ms(100);
+
+    // perform basic configuration using the given parameters
+    unsigned char commands[8] = {
+        pMessages & GPS_NMEA_GGA ? 1 : 0,
+ 1be:	11 fb       	bst	r17, 1
+ 1c0:	88 27       	eor	r24, r24
+ 1c2:	80 f9       	bld	r24, 0
+    uart_init(UART_CALCULATE_BAUD(F_CPU, GPS_BAUDRATE));
+
+    _delay_ms(100);
+
+    // perform basic configuration using the given parameters
+    unsigned char commands[8] = {
+ 1c4:	89 83       	std	Y+1, r24	; 0x01
+        pMessages & GPS_NMEA_GGA ? 1 : 0,
+        pMessages & GPS_NMEA_GSA ? 1 : 0,
+ 1c6:	12 fb       	bst	r17, 2
+ 1c8:	88 27       	eor	r24, r24
+ 1ca:	80 f9       	bld	r24, 0
+    uart_init(UART_CALCULATE_BAUD(F_CPU, GPS_BAUDRATE));
+
+    _delay_ms(100);
+
+    // perform basic configuration using the given parameters
+    unsigned char commands[8] = {
+ 1cc:	8a 83       	std	Y+2, r24	; 0x02
+        pMessages & GPS_NMEA_GGA ? 1 : 0,
+        pMessages & GPS_NMEA_GSA ? 1 : 0,
+        pMessages & GPS_NMEA_GSV ? 1 : 0,
+ 1ce:	13 fb       	bst	r17, 3
+ 1d0:	88 27       	eor	r24, r24
+ 1d2:	80 f9       	bld	r24, 0
+    uart_init(UART_CALCULATE_BAUD(F_CPU, GPS_BAUDRATE));
+
+    _delay_ms(100);
+
+    // perform basic configuration using the given parameters
+    unsigned char commands[8] = {
+ 1d4:	8b 83       	std	Y+3, r24	; 0x03
+        pMessages & GPS_NMEA_GGA ? 1 : 0,
+        pMessages & GPS_NMEA_GSA ? 1 : 0,
+        pMessages & GPS_NMEA_GSV ? 1 : 0,
+        pMessages & GPS_NMEA_GLL ? 1 : 0,
+ 1d6:	14 fb       	bst	r17, 4
+ 1d8:	88 27       	eor	r24, r24
+ 1da:	80 f9       	bld	r24, 0
+    uart_init(UART_CALCULATE_BAUD(F_CPU, GPS_BAUDRATE));
+
+    _delay_ms(100);
+
+    // perform basic configuration using the given parameters
+    unsigned char commands[8] = {
+ 1dc:	8c 83       	std	Y+4, r24	; 0x04
+        pMessages & GPS_NMEA_GGA ? 1 : 0,
+        pMessages & GPS_NMEA_GSA ? 1 : 0,
+        pMessages & GPS_NMEA_GSV ? 1 : 0,
+        pMessages & GPS_NMEA_GLL ? 1 : 0,
+        pMessages & GPS_NMEA_RMC ? 1 : 0,
+ 1de:	15 fb       	bst	r17, 5
+ 1e0:	88 27       	eor	r24, r24
+ 1e2:	80 f9       	bld	r24, 0
+    uart_init(UART_CALCULATE_BAUD(F_CPU, GPS_BAUDRATE));
+
+    _delay_ms(100);
+
+    // perform basic configuration using the given parameters
+    unsigned char commands[8] = {
+ 1e4:	8d 83       	std	Y+5, r24	; 0x05
+        pMessages & GPS_NMEA_GGA ? 1 : 0,
+        pMessages & GPS_NMEA_GSA ? 1 : 0,
+        pMessages & GPS_NMEA_GSV ? 1 : 0,
+        pMessages & GPS_NMEA_GLL ? 1 : 0,
+        pMessages & GPS_NMEA_RMC ? 1 : 0,
+        pMessages & GPS_NMEA_VTG ? 1 : 0,
+ 1e6:	16 fb       	bst	r17, 6
+ 1e8:	88 27       	eor	r24, r24
+ 1ea:	80 f9       	bld	r24, 0
+    uart_init(UART_CALCULATE_BAUD(F_CPU, GPS_BAUDRATE));
+
+    _delay_ms(100);
+
+    // perform basic configuration using the given parameters
+    unsigned char commands[8] = {
+ 1ec:	8e 83       	std	Y+6, r24	; 0x06
+        pMessages & GPS_NMEA_GSA ? 1 : 0,
+        pMessages & GPS_NMEA_GSV ? 1 : 0,
+        pMessages & GPS_NMEA_GLL ? 1 : 0,
+        pMessages & GPS_NMEA_RMC ? 1 : 0,
+        pMessages & GPS_NMEA_VTG ? 1 : 0,
+        pMessages & GPS_NMEA_ZDA ? 1 : 0,
+ 1ee:	11 1f       	adc	r17, r17
+ 1f0:	11 27       	eor	r17, r17
+ 1f2:	11 1f       	adc	r17, r17
+    uart_init(UART_CALCULATE_BAUD(F_CPU, GPS_BAUDRATE));
+
+    _delay_ms(100);
+
+    // perform basic configuration using the given parameters
+    unsigned char commands[8] = {
+ 1f4:	1f 83       	std	Y+7, r17	; 0x07
+ 1f6:	18 86       	std	Y+8, r1	; 0x08
+        pMessages & GPS_NMEA_RMC ? 1 : 0,
+        pMessages & GPS_NMEA_VTG ? 1 : 0,
+        pMessages & GPS_NMEA_ZDA ? 1 : 0,
+        0x00}; // in SRAM
+
+    gps_setParam(GPS_SET_NMEA, commands, 8);
+ 1f8:	48 e0       	ldi	r20, 0x08	; 8
+ 1fa:	50 e0       	ldi	r21, 0x00	; 0
+ 1fc:	be 01       	movw	r22, r28
+ 1fe:	6f 5f       	subi	r22, 0xFF	; 255
+ 200:	7f 4f       	sbci	r23, 0xFF	; 255
+ 202:	88 e0       	ldi	r24, 0x08	; 8
+ 204:	0e 94 82 00 	call	0x104	; 0x104 <gps_setParam>
+ 208:	2f ef       	ldi	r18, 0xFF	; 255
+ 20a:	8f e1       	ldi	r24, 0x1F	; 31
+ 20c:	91 e0       	ldi	r25, 0x01	; 1
+ 20e:	21 50       	subi	r18, 0x01	; 1
+ 210:	80 40       	sbci	r24, 0x00	; 0
+ 212:	90 40       	sbci	r25, 0x00	; 0
+ 214:	e1 f7       	brne	.-8      	; 0x20e <gps_init+0x86>
+ 216:	00 c0       	rjmp	.+0      	; 0x218 <gps_init+0x90>
+ 218:	00 00       	nop
+
+    _delay_ms(50);
+
+    unsigned char rate[2] = {
+ 21a:	09 87       	std	Y+9, r16	; 0x09
+ 21c:	1a 86       	std	Y+10, r1	; 0x0a
+        pFrequency, // pFrequency Hertz
+        0x00}; // In SRAM
+
+    gps_setParam(GPS_SET_UPDATE_RATE, rate, 2);
+ 21e:	42 e0       	ldi	r20, 0x02	; 2
+ 220:	50 e0       	ldi	r21, 0x00	; 0
+ 222:	be 01       	movw	r22, r28
+ 224:	67 5f       	subi	r22, 0xF7	; 247
+ 226:	7f 4f       	sbci	r23, 0xFF	; 255
+ 228:	8e e0       	ldi	r24, 0x0E	; 14
+ 22a:	0e 94 82 00 	call	0x104	; 0x104 <gps_setParam>
+ 22e:	2f ef       	ldi	r18, 0xFF	; 255
+ 230:	8f e1       	ldi	r24, 0x1F	; 31
+ 232:	91 e0       	ldi	r25, 0x01	; 1
+ 234:	21 50       	subi	r18, 0x01	; 1
+ 236:	80 40       	sbci	r24, 0x00	; 0
+ 238:	90 40       	sbci	r25, 0x00	; 0
+ 23a:	e1 f7       	brne	.-8      	; 0x234 <gps_init+0xac>
+ 23c:	00 c0       	rjmp	.+0      	; 0x23e <gps_init+0xb6>
+ 23e:	00 00       	nop
+
+    _delay_ms(50);
+}
+ 240:	2a 96       	adiw	r28, 0x0a	; 10
+ 242:	0f b6       	in	r0, 0x3f	; 63
+ 244:	f8 94       	cli
+ 246:	de bf       	out	0x3e, r29	; 62
+ 248:	0f be       	out	0x3f, r0	; 63
+ 24a:	cd bf       	out	0x3d, r28	; 61
+ 24c:	df 91       	pop	r29
+ 24e:	cf 91       	pop	r28
+ 250:	1f 91       	pop	r17
+ 252:	0f 91       	pop	r16
+ 254:	08 95       	ret
+
+00000256 <gps_checkNMEA>:
+
+    return GPS_ACK;
+}
+
+uint8_t gps_checkNMEA(const char* pSentence, uint8_t pMessageType, char* pPrefix,
+    uint8_t pValidityToken, char* pValidityCheck, uint8_t pCheckEquality) {
+ 256:	bf 92       	push	r11
+ 258:	cf 92       	push	r12
+ 25a:	df 92       	push	r13
+ 25c:	ef 92       	push	r14
+ 25e:	ff 92       	push	r15
+ 260:	0f 93       	push	r16
+ 262:	1f 93       	push	r17
+ 264:	cf 93       	push	r28
+ 266:	df 93       	push	r29
+ 268:	c6 2f       	mov	r28, r22
+ 26a:	a1 e0       	ldi	r26, 0x01	; 1
+    
+    // Checksum is calculated by XORing every character between the '$' and '*'
+    // We set its initial value to '$' so that the loop does not have to
+    // differentiate between the first and other characters (initial '$' xor
+    // first character '$' == 0).
+    char checksum = '$';
+ 26c:	34 e2       	ldi	r19, 0x24	; 36
+    // Counter to count the current token (only used when validityToken is set)
+    uint8_t tokenCounter = 0;
+    
+    // Variable which will contain the validity state of the sentence, defaults
+    // to VALID
+    uint8_t messageValidity = GPS_NMEA_VALID;
+ 26e:	d1 e0       	ldi	r29, 0x01	; 1
+    uint8_t sentenceCounter = 0;
+    uint8_t prefixCounter = 0;
+    uint8_t validityCounter = 0;
+    
+    // Counter to count the current token (only used when validityToken is set)
+    uint8_t tokenCounter = 0;
+ 270:	b1 2c       	mov	r11, r1
+    uint8_t pValidityToken, char* pValidityCheck, uint8_t pCheckEquality) {
+
+    // Counter variables for the different strings which have to be checked
+    uint8_t sentenceCounter = 0;
+    uint8_t prefixCounter = 0;
+    uint8_t validityCounter = 0;
+ 272:	f1 2c       	mov	r15, r1
+uint8_t gps_checkNMEA(const char* pSentence, uint8_t pMessageType, char* pPrefix,
+    uint8_t pValidityToken, char* pValidityCheck, uint8_t pCheckEquality) {
+
+    // Counter variables for the different strings which have to be checked
+    uint8_t sentenceCounter = 0;
+    uint8_t prefixCounter = 0;
+ 274:	b0 e0       	ldi	r27, 0x00	; 0
+            if (pSentence[sentenceCounter] == ',') {
+                tokenCounter++;
+            } else { // check non-comma characters only
+                if (tokenCounter == pValidityToken) {
+                    // Catch if token is too long
+                    if (pValidityCheck[validityCounter] == '\0') {
+ 276:	d2 2e       	mov	r13, r18
+                        messageValidity = GPS_NMEA_INVALID;
+ 278:	c1 2c       	mov	r12, r1
+ 27a:	01 c0       	rjmp	.+2      	; 0x27e <gps_checkNMEA+0x28>
+ 27c:	af 5f       	subi	r26, 0xFF	; 255
+ 27e:	7a 2f       	mov	r23, r26
+ 280:	71 50       	subi	r23, 0x01	; 1
+    char checksum = '$';
+    
+    do {
+        // Prefix check is done if the prefixCounter points to the end of the
+        // given prefix
+        if (pPrefix[prefixCounter] != '\0') {
+ 282:	fa 01       	movw	r30, r20
+ 284:	eb 0f       	add	r30, r27
+ 286:	f1 1d       	adc	r31, r1
+ 288:	60 81       	ld	r22, Z
+ 28a:	66 23       	and	r22, r22
+ 28c:	39 f0       	breq	.+14     	; 0x29c <gps_checkNMEA+0x46>
+            // return instantly if the prefixes do not match
+            if (pSentence[sentenceCounter] != pPrefix[prefixCounter]) {
+ 28e:	fc 01       	movw	r30, r24
+ 290:	e7 0f       	add	r30, r23
+ 292:	f1 1d       	adc	r31, r1
+ 294:	e0 81       	ld	r30, Z
+ 296:	6e 13       	cpse	r22, r30
+ 298:	51 c0       	rjmp	.+162    	; 0x33c <gps_checkNMEA+0xe6>
+                return GPS_NMEA_UNKNOWN;
+            }
+            
+            prefixCounter++;
+ 29a:	bf 5f       	subi	r27, 0xFF	; 255
+        }
+        
+        // Calculate checksum
+        checksum ^= pSentence[sentenceCounter];
+ 29c:	fc 01       	movw	r30, r24
+ 29e:	e7 0f       	add	r30, r23
+ 2a0:	f1 1d       	adc	r31, r1
+ 2a2:	60 81       	ld	r22, Z
+ 2a4:	36 27       	eor	r19, r22
+        
+        // Perform a validity check only if a validityToken was specified
+        if (pValidityToken) {
+ 2a6:	22 23       	and	r18, r18
+ 2a8:	09 f4       	brne	.+2      	; 0x2ac <gps_checkNMEA+0x56>
+ 2aa:	5a c0       	rjmp	.+180    	; 0x360 <gps_checkNMEA+0x10a>
+            if (pSentence[sentenceCounter] == ',') {
+ 2ac:	6c 32       	cpi	r22, 0x2C	; 44
+ 2ae:	11 f4       	brne	.+4      	; 0x2b4 <gps_checkNMEA+0x5e>
+                tokenCounter++;
+ 2b0:	b3 94       	inc	r11
+ 2b2:	4d c0       	rjmp	.+154    	; 0x34e <gps_checkNMEA+0xf8>
+            } else { // check non-comma characters only
+                if (tokenCounter == pValidityToken) {
+ 2b4:	b2 12       	cpse	r11, r18
+ 2b6:	4b c0       	rjmp	.+150    	; 0x34e <gps_checkNMEA+0xf8>
+                    // Catch if token is too long
+                    if (pValidityCheck[validityCounter] == '\0') {
+ 2b8:	f8 01       	movw	r30, r16
+ 2ba:	ef 0d       	add	r30, r15
+ 2bc:	f1 1d       	adc	r31, r1
+ 2be:	70 81       	ld	r23, Z
+ 2c0:	77 23       	and	r23, r23
+ 2c2:	09 f4       	brne	.+2      	; 0x2c6 <gps_checkNMEA+0x70>
+ 2c4:	3f c0       	rjmp	.+126    	; 0x344 <gps_checkNMEA+0xee>
+                        messageValidity = GPS_NMEA_INVALID;
+                    } else {
+                        // Check if tokens differ
+                        if (pSentence[sentenceCounter] != pValidityCheck[validityCounter++]) {
+ 2c6:	f3 94       	inc	r15
+ 2c8:	67 13       	cpse	r22, r23
+ 2ca:	3f c0       	rjmp	.+126    	; 0x34a <gps_checkNMEA+0xf4>
+ 2cc:	bd 2c       	mov	r11, r13
+ 2ce:	3f c0       	rjmp	.+126    	; 0x34e <gps_checkNMEA+0xf8>
+    
+    // If a validityToken was specified, perform some final checks
+    if (pValidityToken != 0) {
+        // Check if token was too short (i.e. validityCounter still points to a
+        // not-null character)
+        if (pValidityCheck[validityCounter] != '\0') {
+ 2d0:	f8 01       	movw	r30, r16
+ 2d2:	ef 0d       	add	r30, r15
+ 2d4:	f1 1d       	adc	r31, r1
+ 2d6:	20 81       	ld	r18, Z
+ 2d8:	21 11       	cpse	r18, r1
+            messageValidity = GPS_NMEA_INVALID;
+ 2da:	d0 e0       	ldi	r29, 0x00	; 0
+            
+        // If a validityToken was specified, messageValidity currently holds _VALID
+        // if the token was equal to the given one and _INVALID otherwise. Check, if
+        // checkEquality was set to FALSE. In this case, negate the messageValidity
+        // variable
+        if (pCheckEquality == FALSE) {
+ 2dc:	e1 10       	cpse	r14, r1
+ 2de:	05 c0       	rjmp	.+10     	; 0x2ea <gps_checkNMEA+0x94>
+            if (messageValidity == GPS_NMEA_VALID) {
+ 2e0:	21 e0       	ldi	r18, 0x01	; 1
+ 2e2:	d1 30       	cpi	r29, 0x01	; 1
+ 2e4:	09 f4       	brne	.+2      	; 0x2e8 <gps_checkNMEA+0x92>
+ 2e6:	20 e0       	ldi	r18, 0x00	; 0
+ 2e8:	d2 2f       	mov	r29, r18
+    }
+    
+    // If a checksum was given, xor the last three characters again (to remove
+    // them from our calculation) and compare the calculation to the given
+    // checksum
+    if (pSentence[sentenceCounter - 3] == '*') {
+ 2ea:	fc 01       	movw	r30, r24
+ 2ec:	e6 0f       	add	r30, r22
+ 2ee:	f7 1f       	adc	r31, r23
+ 2f0:	33 97       	sbiw	r30, 0x03	; 3
+ 2f2:	20 81       	ld	r18, Z
+ 2f4:	2a 32       	cpi	r18, 0x2A	; 42
+ 2f6:	f9 f4       	brne	.+62     	; 0x336 <gps_checkNMEA+0xe0>
+        checksum = checksum ^ '*' ^ pSentence[sentenceCounter - 2] ^ pSentence[sentenceCounter - 1];
+ 2f8:	fc 01       	movw	r30, r24
+ 2fa:	e6 0f       	add	r30, r22
+ 2fc:	f7 1f       	adc	r31, r23
+ 2fe:	32 97       	sbiw	r30, 0x02	; 2
+ 300:	20 81       	ld	r18, Z
+ 302:	61 50       	subi	r22, 0x01	; 1
+ 304:	71 09       	sbc	r23, r1
+ 306:	8c 01       	movw	r16, r24
+ 308:	06 0f       	add	r16, r22
+ 30a:	17 1f       	adc	r17, r23
+ 30c:	8a e2       	ldi	r24, 0x2A	; 42
+ 30e:	f3 2e       	mov	r15, r19
+ 310:	f8 26       	eor	r15, r24
+ 312:	f2 26       	eor	r15, r18
+ 314:	f8 01       	movw	r30, r16
+ 316:	80 81       	ld	r24, Z
+ 318:	f8 26       	eor	r15, r24
+        
+        // convert hex-string to uint8_t
+        uint8_t givenChecksum = (hexCharToInt(pSentence[sentenceCounter - 2]) << 4)
+ 31a:	82 2f       	mov	r24, r18
+ 31c:	0e 94 5d 00 	call	0xba	; 0xba <hexCharToInt>
+ 320:	e8 2e       	mov	r14, r24
+            + hexCharToInt(pSentence[sentenceCounter - 1]);
+ 322:	f8 01       	movw	r30, r16
+ 324:	80 81       	ld	r24, Z
+ 326:	0e 94 5d 00 	call	0xba	; 0xba <hexCharToInt>
+    // checksum
+    if (pSentence[sentenceCounter - 3] == '*') {
+        checksum = checksum ^ '*' ^ pSentence[sentenceCounter - 2] ^ pSentence[sentenceCounter - 1];
+        
+        // convert hex-string to uint8_t
+        uint8_t givenChecksum = (hexCharToInt(pSentence[sentenceCounter - 2]) << 4)
+ 32a:	f0 e1       	ldi	r31, 0x10	; 16
+ 32c:	ef 9e       	mul	r14, r31
+ 32e:	80 0d       	add	r24, r0
+ 330:	11 24       	eor	r1, r1
+            + hexCharToInt(pSentence[sentenceCounter - 1]);
+        
+        // on checksum mismatch, the message is not only invalid, but completely
+        // corrupt, therefore GPS_NMEA_UNKNOWN will be returned.
+        if (checksum != givenChecksum) {
+ 332:	f8 12       	cpse	r15, r24
+ 334:	05 c0       	rjmp	.+10     	; 0x340 <gps_checkNMEA+0xea>
+            return GPS_NMEA_UNKNOWN;
+        }
+    }
+    
+    return pMessageType | messageValidity;
+ 336:	8d 2f       	mov	r24, r29
+ 338:	8c 2b       	or	r24, r28
+ 33a:	1b c0       	rjmp	.+54     	; 0x372 <gps_checkNMEA+0x11c>
+        // Prefix check is done if the prefixCounter points to the end of the
+        // given prefix
+        if (pPrefix[prefixCounter] != '\0') {
+            // return instantly if the prefixes do not match
+            if (pSentence[sentenceCounter] != pPrefix[prefixCounter]) {
+                return GPS_NMEA_UNKNOWN;
+ 33c:	80 e0       	ldi	r24, 0x00	; 0
+ 33e:	19 c0       	rjmp	.+50     	; 0x372 <gps_checkNMEA+0x11c>
+            + hexCharToInt(pSentence[sentenceCounter - 1]);
+        
+        // on checksum mismatch, the message is not only invalid, but completely
+        // corrupt, therefore GPS_NMEA_UNKNOWN will be returned.
+        if (checksum != givenChecksum) {
+            return GPS_NMEA_UNKNOWN;
+ 340:	80 e0       	ldi	r24, 0x00	; 0
+ 342:	17 c0       	rjmp	.+46     	; 0x372 <gps_checkNMEA+0x11c>
+            if (pSentence[sentenceCounter] == ',') {
+                tokenCounter++;
+            } else { // check non-comma characters only
+                if (tokenCounter == pValidityToken) {
+                    // Catch if token is too long
+                    if (pValidityCheck[validityCounter] == '\0') {
+ 344:	bd 2c       	mov	r11, r13
+                        messageValidity = GPS_NMEA_INVALID;
+ 346:	dc 2d       	mov	r29, r12
+ 348:	02 c0       	rjmp	.+4      	; 0x34e <gps_checkNMEA+0xf8>
+                    } else {
+                        // Check if tokens differ
+                        if (pSentence[sentenceCounter] != pValidityCheck[validityCounter++]) {
+ 34a:	bd 2c       	mov	r11, r13
+                            messageValidity = GPS_NMEA_INVALID;
+ 34c:	dc 2d       	mov	r29, r12
+                        }
+                    }
+                }
+            }
+        }
+    } while (pSentence[++sentenceCounter] != '\0');
+ 34e:	6a 2f       	mov	r22, r26
+ 350:	70 e0       	ldi	r23, 0x00	; 0
+ 352:	fc 01       	movw	r30, r24
+ 354:	e6 0f       	add	r30, r22
+ 356:	f7 1f       	adc	r31, r23
+ 358:	e0 81       	ld	r30, Z
+ 35a:	e1 11       	cpse	r30, r1
+ 35c:	8f cf       	rjmp	.-226    	; 0x27c <gps_checkNMEA+0x26>
+ 35e:	b8 cf       	rjmp	.-144    	; 0x2d0 <gps_checkNMEA+0x7a>
+ 360:	6a 2f       	mov	r22, r26
+ 362:	70 e0       	ldi	r23, 0x00	; 0
+ 364:	fc 01       	movw	r30, r24
+ 366:	e6 0f       	add	r30, r22
+ 368:	f7 1f       	adc	r31, r23
+ 36a:	e0 81       	ld	r30, Z
+ 36c:	e1 11       	cpse	r30, r1
+ 36e:	86 cf       	rjmp	.-244    	; 0x27c <gps_checkNMEA+0x26>
+ 370:	bc cf       	rjmp	.-136    	; 0x2ea <gps_checkNMEA+0x94>
+            return GPS_NMEA_UNKNOWN;
+        }
+    }
+    
+    return pMessageType | messageValidity;
+}
+ 372:	df 91       	pop	r29
+ 374:	cf 91       	pop	r28
+ 376:	1f 91       	pop	r17
+ 378:	0f 91       	pop	r16
+ 37a:	ff 90       	pop	r15
+ 37c:	ef 90       	pop	r14
+ 37e:	df 90       	pop	r13
+ 380:	cf 90       	pop	r12
+ 382:	bf 90       	pop	r11
+ 384:	08 95       	ret
+
+00000386 <gps_getNMEA>:
+
+uint8_t gps_getNMEA(char* pOutput, uint8_t pMaxLength) {
+ 386:	ef 92       	push	r14
+ 388:	ff 92       	push	r15
+ 38a:	0f 93       	push	r16
+ 38c:	1f 93       	push	r17
+ 38e:	cf 93       	push	r28
+ 390:	df 93       	push	r29
+ 392:	ec 01       	movw	r28, r24
+ 394:	06 2f       	mov	r16, r22
+    // A dollar sign indicates the start of a NMEA sentence
+    while(uart_receiveChar() != '$') {
+ 396:	04 c0       	rjmp	.+8      	; 0x3a0 <gps_getNMEA+0x1a>
+ 398:	83 e3       	ldi	r24, 0x33	; 51
+ 39a:	97 e0       	ldi	r25, 0x07	; 7
+ 39c:	01 97       	sbiw	r24, 0x01	; 1
+ 39e:	f1 f7       	brne	.-4      	; 0x39c <gps_getNMEA+0x16>
+ 3a0:	0e 94 e5 03 	call	0x7ca	; 0x7ca <uart_receiveChar>
+ 3a4:	84 32       	cpi	r24, 0x24	; 36
+ 3a6:	c1 f7       	brne	.-16     	; 0x398 <gps_getNMEA+0x12>
+        _delay_ms(1);
+    }
+    
+    // Copy data until LF
+    uint8_t i = 0;
+    pOutput[i++] = '$';
+ 3a8:	88 83       	st	Y, r24
+ 3aa:	ff 24       	eor	r15, r15
+ 3ac:	f3 94       	inc	r15
+        }
+	    
+        inChar = uart_receiveChar();
+
+        pOutput[i++] = inChar;
+    } while((inChar != LF) && (i < (pMaxLength-1)));
+ 3ae:	10 e0       	ldi	r17, 0x00	; 0
+ 3b0:	01 50       	subi	r16, 0x01	; 1
+ 3b2:	11 09       	sbc	r17, r1
+    pOutput[i++] = '$';
+
+    char inChar;
+
+    do {
+        while(!uart_hasData()) {
+ 3b4:	0e 94 fd 03 	call	0x7fa	; 0x7fa <uart_hasData>
+ 3b8:	88 23       	and	r24, r24
+ 3ba:	e1 f3       	breq	.-8      	; 0x3b4 <gps_getNMEA+0x2e>
+          // burn energy
+        }
+	    
+        inChar = uart_receiveChar();
+ 3bc:	0e 94 e5 03 	call	0x7ca	; 0x7ca <uart_receiveChar>
+
+        pOutput[i++] = inChar;
+ 3c0:	fe 01       	movw	r30, r28
+ 3c2:	ef 0d       	add	r30, r15
+ 3c4:	f1 1d       	adc	r31, r1
+ 3c6:	80 83       	st	Z, r24
+ 3c8:	f3 94       	inc	r15
+    } while((inChar != LF) && (i < (pMaxLength-1)));
+ 3ca:	8a 30       	cpi	r24, 0x0A	; 10
+ 3cc:	29 f0       	breq	.+10     	; 0x3d8 <gps_getNMEA+0x52>
+ 3ce:	2f 2d       	mov	r18, r15
+ 3d0:	30 e0       	ldi	r19, 0x00	; 0
+ 3d2:	20 17       	cp	r18, r16
+ 3d4:	31 07       	cpc	r19, r17
+ 3d6:	74 f3       	brlt	.-36     	; 0x3b4 <gps_getNMEA+0x2e>
+
+    // Don't forget to terminate the string with a NUL character, otherwise
+    // everything might crash and burn
+    pOutput[i] = 0;
+ 3d8:	fe 01       	movw	r30, r28
+ 3da:	ef 0d       	add	r30, r15
+ 3dc:	f1 1d       	adc	r31, r1
+ 3de:	10 82       	st	Z, r1
+
+    // Determine the correct validity checker by checking characters 3-5 in a
+    // "Trie"-like if-sentence tree, saves many cycles in comparison to full
+    // prefix check for each possible message
+    switch (pOutput[3]) {
+ 3e0:	8b 81       	ldd	r24, Y+3	; 0x03
+ 3e2:	82 35       	cpi	r24, 0x52	; 82
+ 3e4:	09 f4       	brne	.+2      	; 0x3e8 <gps_getNMEA+0x62>
+ 3e6:	44 c0       	rjmp	.+136    	; 0x470 <gps_getNMEA+0xea>
+ 3e8:	20 f4       	brcc	.+8      	; 0x3f2 <gps_getNMEA+0x6c>
+ 3ea:	87 34       	cpi	r24, 0x47	; 71
+ 3ec:	09 f0       	breq	.+2      	; 0x3f0 <gps_getNMEA+0x6a>
+ 3ee:	62 c0       	rjmp	.+196    	; 0x4b4 <gps_getNMEA+0x12e>
+ 3f0:	07 c0       	rjmp	.+14     	; 0x400 <gps_getNMEA+0x7a>
+ 3f2:	86 35       	cpi	r24, 0x56	; 86
+ 3f4:	09 f4       	brne	.+2      	; 0x3f8 <gps_getNMEA+0x72>
+ 3f6:	48 c0       	rjmp	.+144    	; 0x488 <gps_getNMEA+0x102>
+ 3f8:	8a 35       	cpi	r24, 0x5A	; 90
+ 3fa:	09 f0       	breq	.+2      	; 0x3fe <gps_getNMEA+0x78>
+ 3fc:	5b c0       	rjmp	.+182    	; 0x4b4 <gps_getNMEA+0x12e>
+ 3fe:	4f c0       	rjmp	.+158    	; 0x49e <gps_getNMEA+0x118>
+        case 'G': //GGA, GSA, GSV or GLL
+            switch (pOutput[4]) {
+ 400:	8c 81       	ldd	r24, Y+4	; 0x04
+ 402:	8c 34       	cpi	r24, 0x4C	; 76
+ 404:	49 f1       	breq	.+82     	; 0x458 <gps_getNMEA+0xd2>
+ 406:	83 35       	cpi	r24, 0x53	; 83
+ 408:	71 f0       	breq	.+28     	; 0x426 <gps_getNMEA+0xa0>
+ 40a:	87 34       	cpi	r24, 0x47	; 71
+ 40c:	09 f0       	breq	.+2      	; 0x410 <gps_getNMEA+0x8a>
+ 40e:	54 c0       	rjmp	.+168    	; 0x4b8 <gps_getNMEA+0x132>
+                case 'G': //only GGA left
+                    return gps_checkNMEA(pOutput, GPS_NMEA_GGA, "$GPGGA", 6, "0", FALSE);
+ 410:	e1 2c       	mov	r14, r1
+ 412:	00 e0       	ldi	r16, 0x00	; 0
+ 414:	11 e0       	ldi	r17, 0x01	; 1
+ 416:	26 e0       	ldi	r18, 0x06	; 6
+ 418:	42 e0       	ldi	r20, 0x02	; 2
+ 41a:	51 e0       	ldi	r21, 0x01	; 1
+ 41c:	62 e0       	ldi	r22, 0x02	; 2
+ 41e:	ce 01       	movw	r24, r28
+ 420:	0e 94 2b 01 	call	0x256	; 0x256 <gps_checkNMEA>
+ 424:	4a c0       	rjmp	.+148    	; 0x4ba <gps_getNMEA+0x134>
+                case 'S': //GSA or GSV:
+                    if (pOutput[5] == 'A') {
+ 426:	8d 81       	ldd	r24, Y+5	; 0x05
+ 428:	81 34       	cpi	r24, 0x41	; 65
+ 42a:	59 f4       	brne	.+22     	; 0x442 <gps_getNMEA+0xbc>
+                        return gps_checkNMEA(pOutput, GPS_NMEA_GSA, "$GPGSA", 2, "1", FALSE);
+ 42c:	e1 2c       	mov	r14, r1
+ 42e:	09 e0       	ldi	r16, 0x09	; 9
+ 430:	11 e0       	ldi	r17, 0x01	; 1
+ 432:	22 e0       	ldi	r18, 0x02	; 2
+ 434:	4b e0       	ldi	r20, 0x0B	; 11
+ 436:	51 e0       	ldi	r21, 0x01	; 1
+ 438:	64 e0       	ldi	r22, 0x04	; 4
+ 43a:	ce 01       	movw	r24, r28
+ 43c:	0e 94 2b 01 	call	0x256	; 0x256 <gps_checkNMEA>
+ 440:	3c c0       	rjmp	.+120    	; 0x4ba <gps_getNMEA+0x134>
+                    } else {
+                        return gps_checkNMEA(pOutput, GPS_NMEA_GSV, "$GPGSV", 0, "", FALSE);
+ 442:	e1 2c       	mov	r14, r1
+ 444:	01 e0       	ldi	r16, 0x01	; 1
+ 446:	11 e0       	ldi	r17, 0x01	; 1
+ 448:	20 e0       	ldi	r18, 0x00	; 0
+ 44a:	42 e1       	ldi	r20, 0x12	; 18
+ 44c:	51 e0       	ldi	r21, 0x01	; 1
+ 44e:	68 e0       	ldi	r22, 0x08	; 8
+ 450:	ce 01       	movw	r24, r28
+ 452:	0e 94 2b 01 	call	0x256	; 0x256 <gps_checkNMEA>
+ 456:	31 c0       	rjmp	.+98     	; 0x4ba <gps_getNMEA+0x134>
+                    }
+                case 'L': //only GLL left
+                    return gps_checkNMEA(pOutput, GPS_NMEA_GLL, "$GPGLL", 6, "A", TRUE);
+ 458:	ee 24       	eor	r14, r14
+ 45a:	e3 94       	inc	r14
+ 45c:	05 e3       	ldi	r16, 0x35	; 53
+ 45e:	11 e0       	ldi	r17, 0x01	; 1
+ 460:	26 e0       	ldi	r18, 0x06	; 6
+ 462:	49 e1       	ldi	r20, 0x19	; 25
+ 464:	51 e0       	ldi	r21, 0x01	; 1
+ 466:	60 e1       	ldi	r22, 0x10	; 16
+ 468:	ce 01       	movw	r24, r28
+ 46a:	0e 94 2b 01 	call	0x256	; 0x256 <gps_checkNMEA>
+ 46e:	25 c0       	rjmp	.+74     	; 0x4ba <gps_getNMEA+0x134>
+                default:
+                    return GPS_NMEA_UNKNOWN;
+            }//btw: no breaks are necessary as every case returns sth.
+        case 'R': //only RMC left
+            return gps_checkNMEA(pOutput, GPS_NMEA_RMC, "$GPRMC", 2, "A", TRUE);
+ 470:	ee 24       	eor	r14, r14
+ 472:	e3 94       	inc	r14
+ 474:	05 e3       	ldi	r16, 0x35	; 53
+ 476:	11 e0       	ldi	r17, 0x01	; 1
+ 478:	22 e0       	ldi	r18, 0x02	; 2
+ 47a:	40 e2       	ldi	r20, 0x20	; 32
+ 47c:	51 e0       	ldi	r21, 0x01	; 1
+ 47e:	60 e2       	ldi	r22, 0x20	; 32
+ 480:	ce 01       	movw	r24, r28
+ 482:	0e 94 2b 01 	call	0x256	; 0x256 <gps_checkNMEA>
+ 486:	19 c0       	rjmp	.+50     	; 0x4ba <gps_getNMEA+0x134>
+        case 'V': //only VTG left
+            return gps_checkNMEA(pOutput, GPS_NMEA_VTG, "$GPVTG", 9, "N", FALSE);
+ 488:	e1 2c       	mov	r14, r1
+ 48a:	07 e2       	ldi	r16, 0x27	; 39
+ 48c:	11 e0       	ldi	r17, 0x01	; 1
+ 48e:	29 e0       	ldi	r18, 0x09	; 9
+ 490:	49 e2       	ldi	r20, 0x29	; 41
+ 492:	51 e0       	ldi	r21, 0x01	; 1
+ 494:	60 e4       	ldi	r22, 0x40	; 64
+ 496:	ce 01       	movw	r24, r28
+ 498:	0e 94 2b 01 	call	0x256	; 0x256 <gps_checkNMEA>
+ 49c:	0e c0       	rjmp	.+28     	; 0x4ba <gps_getNMEA+0x134>
+        case 'Z': //only ZDA left
+            return gps_checkNMEA(pOutput, GPS_NMEA_ZDA, "$GPZDA", 0, "", FALSE);
+ 49e:	e1 2c       	mov	r14, r1
+ 4a0:	01 e0       	ldi	r16, 0x01	; 1
+ 4a2:	11 e0       	ldi	r17, 0x01	; 1
+ 4a4:	20 e0       	ldi	r18, 0x00	; 0
+ 4a6:	40 e3       	ldi	r20, 0x30	; 48
+ 4a8:	51 e0       	ldi	r21, 0x01	; 1
+ 4aa:	60 e8       	ldi	r22, 0x80	; 128
+ 4ac:	ce 01       	movw	r24, r28
+ 4ae:	0e 94 2b 01 	call	0x256	; 0x256 <gps_checkNMEA>
+ 4b2:	03 c0       	rjmp	.+6      	; 0x4ba <gps_getNMEA+0x134>
+        default:
+            return GPS_NMEA_UNKNOWN;
+ 4b4:	80 e0       	ldi	r24, 0x00	; 0
+ 4b6:	01 c0       	rjmp	.+2      	; 0x4ba <gps_getNMEA+0x134>
+                        return gps_checkNMEA(pOutput, GPS_NMEA_GSV, "$GPGSV", 0, "", FALSE);
+                    }
+                case 'L': //only GLL left
+                    return gps_checkNMEA(pOutput, GPS_NMEA_GLL, "$GPGLL", 6, "A", TRUE);
+                default:
+                    return GPS_NMEA_UNKNOWN;
+ 4b8:	80 e0       	ldi	r24, 0x00	; 0
+        case 'Z': //only ZDA left
+            return gps_checkNMEA(pOutput, GPS_NMEA_ZDA, "$GPZDA", 0, "", FALSE);
+        default:
+            return GPS_NMEA_UNKNOWN;
+    }
+}
+ 4ba:	df 91       	pop	r29
+ 4bc:	cf 91       	pop	r28
+ 4be:	1f 91       	pop	r17
+ 4c0:	0f 91       	pop	r16
+ 4c2:	ff 90       	pop	r15
+ 4c4:	ef 90       	pop	r14
+ 4c6:	08 95       	ret
+
+000004c8 <toggle_e>:
+
+
+#if LCD_IO_MODE
+/* toggle Enable Pin to initiate write */
+static void toggle_e(void){
+    lcd_e_high();
+ 4c8:	16 9a       	sbi	0x02, 6	; 2
+    lcd_e_delay();
+ 4ca:	00 c0       	rjmp	.+0      	; 0x4cc <toggle_e+0x4>
+    lcd_e_low();
+ 4cc:	16 98       	cbi	0x02, 6	; 2
+ 4ce:	08 95       	ret
+
+000004d0 <lcd_write>:
+          rs     1: write data    
+                 0: write instruction
+Returns:  none
+*************************************************************************/
+#if LCD_IO_MODE
+static void lcd_write(uint8_t data,uint8_t rs){
+ 4d0:	cf 93       	push	r28
+ 4d2:	df 93       	push	r29
+ 4d4:	d8 2f       	mov	r29, r24
+    unsigned char dataBits ;
+
+
+    if (rs){   /* write data        (RS=1, RW=0) */
+ 4d6:	66 23       	and	r22, r22
+ 4d8:	11 f0       	breq	.+4      	; 0x4de <lcd_write+0xe>
+       lcd_rs_high();
+ 4da:	14 9a       	sbi	0x02, 4	; 2
+ 4dc:	01 c0       	rjmp	.+2      	; 0x4e0 <lcd_write+0x10>
+    } else{    /* write instruction (RS=0, RW=0) */
+       lcd_rs_low();
+ 4de:	14 98       	cbi	0x02, 4	; 2
+    }
+    lcd_rw_low();
+ 4e0:	15 98       	cbi	0x02, 5	; 2
+
+    if ( ( &LCD_DATA0_PORT == &LCD_DATA1_PORT) && ( &LCD_DATA1_PORT == &LCD_DATA2_PORT ) && ( &LCD_DATA2_PORT == &LCD_DATA3_PORT )
+      && (LCD_DATA0_PIN == 0) && (LCD_DATA1_PIN == 1) && (LCD_DATA2_PIN == 2) && (LCD_DATA3_PIN == 3) ){
+        /* configure data pins as output */
+        DDR(LCD_DATA0_PORT) |= 0x0F;
+ 4e2:	81 b1       	in	r24, 0x01	; 1
+ 4e4:	8f 60       	ori	r24, 0x0F	; 15
+ 4e6:	81 b9       	out	0x01, r24	; 1
+
+        /* output high nibble first */
+        dataBits = LCD_DATA0_PORT & 0xF0;
+ 4e8:	c2 b1       	in	r28, 0x02	; 2
+ 4ea:	c0 7f       	andi	r28, 0xF0	; 240
+        LCD_DATA0_PORT = dataBits |((data>>4)&0x0F);
+ 4ec:	8d 2f       	mov	r24, r29
+ 4ee:	82 95       	swap	r24
+ 4f0:	8f 70       	andi	r24, 0x0F	; 15
+ 4f2:	8c 2b       	or	r24, r28
+ 4f4:	82 b9       	out	0x02, r24	; 2
+        lcd_e_toggle();
+ 4f6:	0e 94 64 02 	call	0x4c8	; 0x4c8 <toggle_e>
+
+        /* output low nibble */
+        LCD_DATA0_PORT = dataBits | (data&0x0F);
+ 4fa:	df 70       	andi	r29, 0x0F	; 15
+ 4fc:	dc 2b       	or	r29, r28
+ 4fe:	d2 b9       	out	0x02, r29	; 2
+        lcd_e_toggle();
+ 500:	0e 94 64 02 	call	0x4c8	; 0x4c8 <toggle_e>
+
+        /* all data pins high (inactive) */
+        LCD_DATA0_PORT = dataBits | 0x0F;
+ 504:	cf 60       	ori	r28, 0x0F	; 15
+ 506:	c2 b9       	out	0x02, r28	; 2
+        LCD_DATA0_PORT |= _BV(LCD_DATA0_PIN);
+        LCD_DATA1_PORT |= _BV(LCD_DATA1_PIN);
+        LCD_DATA2_PORT |= _BV(LCD_DATA2_PIN);
+        LCD_DATA3_PORT |= _BV(LCD_DATA3_PIN);
+    }
+}
+ 508:	df 91       	pop	r29
+ 50a:	cf 91       	pop	r28
+ 50c:	08 95       	ret
+
+0000050e <lcd_read>:
+#if LCD_IO_MODE
+static uint8_t lcd_read(uint8_t rs){
+    uint8_t data;
+    
+    
+    if (rs)
+ 50e:	88 23       	and	r24, r24
+ 510:	11 f0       	breq	.+4      	; 0x516 <lcd_read+0x8>
+        lcd_rs_high();                       /* RS=1: read data      */
+ 512:	14 9a       	sbi	0x02, 4	; 2
+ 514:	01 c0       	rjmp	.+2      	; 0x518 <lcd_read+0xa>
+    else
+        lcd_rs_low();                        /* RS=0: read busy flag */
+ 516:	14 98       	cbi	0x02, 4	; 2
+    lcd_rw_high();                           /* RW=1  read mode      */
+ 518:	15 9a       	sbi	0x02, 5	; 2
+    
+    if ( ( &LCD_DATA0_PORT == &LCD_DATA1_PORT) && ( &LCD_DATA1_PORT == &LCD_DATA2_PORT ) && ( &LCD_DATA2_PORT == &LCD_DATA3_PORT )
+      && ( LCD_DATA0_PIN == 0 )&& (LCD_DATA1_PIN == 1) && (LCD_DATA2_PIN == 2) && (LCD_DATA3_PIN == 3) ){
+        DDR(LCD_DATA0_PORT) &= 0xF0;         /* configure data pins as input */
+ 51a:	81 b1       	in	r24, 0x01	; 1
+ 51c:	80 7f       	andi	r24, 0xF0	; 240
+ 51e:	81 b9       	out	0x01, r24	; 1
+        
+        lcd_e_high();
+ 520:	16 9a       	sbi	0x02, 6	; 2
+        lcd_e_delay();        
+ 522:	00 c0       	rjmp	.+0      	; 0x524 <lcd_read+0x16>
+        data = PIN(LCD_DATA0_PORT) << 4;     /* read high nibble first */
+ 524:	90 b1       	in	r25, 0x00	; 0
+        lcd_e_low();
+ 526:	16 98       	cbi	0x02, 6	; 2
+        
+        lcd_e_delay();                       /* Enable 500ns low       */
+ 528:	00 c0       	rjmp	.+0      	; 0x52a <lcd_read+0x1c>
+        
+        lcd_e_high();
+ 52a:	16 9a       	sbi	0x02, 6	; 2
+        lcd_e_delay();
+ 52c:	00 c0       	rjmp	.+0      	; 0x52e <lcd_read+0x20>
+        data |= PIN(LCD_DATA0_PORT)&0x0F;    /* read low nibble        */
+ 52e:	80 b1       	in	r24, 0x00	; 0
+        lcd_e_low();
+ 530:	16 98       	cbi	0x02, 6	; 2
+      && ( LCD_DATA0_PIN == 0 )&& (LCD_DATA1_PIN == 1) && (LCD_DATA2_PIN == 2) && (LCD_DATA3_PIN == 3) ){
+        DDR(LCD_DATA0_PORT) &= 0xF0;         /* configure data pins as input */
+        
+        lcd_e_high();
+        lcd_e_delay();        
+        data = PIN(LCD_DATA0_PORT) << 4;     /* read high nibble first */
+ 532:	92 95       	swap	r25
+ 534:	90 7f       	andi	r25, 0xF0	; 240
+        
+        lcd_e_delay();                       /* Enable 500ns low       */
+        
+        lcd_e_high();
+        lcd_e_delay();
+        data |= PIN(LCD_DATA0_PORT)&0x0F;    /* read low nibble        */
+ 536:	8f 70       	andi	r24, 0x0F	; 15
+        if ( PIN(LCD_DATA2_PORT) & _BV(LCD_DATA2_PIN) ) data |= 0x04;
+        if ( PIN(LCD_DATA3_PORT) & _BV(LCD_DATA3_PIN) ) data |= 0x08;        
+        lcd_e_low();
+    }
+    return data;
+}
+ 538:	89 2b       	or	r24, r25
+ 53a:	08 95       	ret
+
+0000053c <lcd_waitbusy>:
+*************************************************************************/
+static uint8_t lcd_waitbusy(void){
+    register uint8_t c;
+    
+    /* wait until busy flag is cleared */
+    while ( (c=lcd_read(0)) & (1<<LCD_BUSY)) {}
+ 53c:	80 e0       	ldi	r24, 0x00	; 0
+ 53e:	0e 94 87 02 	call	0x50e	; 0x50e <lcd_read>
+ 542:	88 23       	and	r24, r24
+ 544:	dc f3       	brlt	.-10     	; 0x53c <lcd_waitbusy>
+*************************************************************************/
+static inline void _delayFourCycles(unsigned int __count){
+    if ( __count == 0 )    
+        __asm__ __volatile__( "rjmp 1f\n 1:" );    // 2 cycles
+    else
+        __asm__ __volatile__ (
+ 546:	83 e0       	ldi	r24, 0x03	; 3
+ 548:	90 e0       	ldi	r25, 0x00	; 0
+ 54a:	01 97       	sbiw	r24, 0x01	; 1
+ 54c:	f1 f7       	brne	.-4      	; 0x54a <lcd_waitbusy+0xe>
+    
+    /* the address counter is updated 4us after the busy flag is cleared */
+    delay(2);
+
+    /* now read the address counter */
+    return (lcd_read(0));  // return address counter
+ 54e:	80 e0       	ldi	r24, 0x00	; 0
+ 550:	0e 94 87 02 	call	0x50e	; 0x50e <lcd_read>
+    
+}/* lcd_waitbusy */
+ 554:	08 95       	ret
+
+00000556 <lcd_command>:
+/*************************************************************************
+Send LCD controller instruction command
+Input:   instruction to send to LCD controller, see HD44780 data sheet
+Returns: none
+*************************************************************************/
+void lcd_command(uint8_t cmd){
+ 556:	cf 93       	push	r28
+ 558:	c8 2f       	mov	r28, r24
+    lcd_waitbusy();
+ 55a:	0e 94 9e 02 	call	0x53c	; 0x53c <lcd_waitbusy>
+    lcd_write(cmd,0);
+ 55e:	60 e0       	ldi	r22, 0x00	; 0
+ 560:	8c 2f       	mov	r24, r28
+ 562:	0e 94 68 02 	call	0x4d0	; 0x4d0 <lcd_write>
+}
+ 566:	cf 91       	pop	r28
+ 568:	08 95       	ret
+
+0000056a <lcd_gotoxy>:
+			lcd_command((1<<LCD_DDRAM)+LCD_START_LINE1+x);
+		else
+			lcd_command((1<<LCD_DDRAM)+LCD_START_LINE2+x);
+	#endif
+	#if LCD_LINES==4
+		if ( y==0 )
+ 56a:	61 11       	cpse	r22, r1
+ 56c:	04 c0       	rjmp	.+8      	; 0x576 <lcd_gotoxy+0xc>
+			lcd_command((1<<LCD_DDRAM)+LCD_START_LINE1+x);
+ 56e:	80 58       	subi	r24, 0x80	; 128
+ 570:	0e 94 ab 02 	call	0x556	; 0x556 <lcd_command>
+ 574:	08 95       	ret
+		else if ( y==1)
+ 576:	61 30       	cpi	r22, 0x01	; 1
+ 578:	21 f4       	brne	.+8      	; 0x582 <lcd_gotoxy+0x18>
+			lcd_command((1<<LCD_DDRAM)+LCD_START_LINE2+x);
+ 57a:	80 54       	subi	r24, 0x40	; 64
+ 57c:	0e 94 ab 02 	call	0x556	; 0x556 <lcd_command>
+ 580:	08 95       	ret
+		else if ( y==2)
+ 582:	62 30       	cpi	r22, 0x02	; 2
+ 584:	21 f4       	brne	.+8      	; 0x58e <lcd_gotoxy+0x24>
+			lcd_command((1<<LCD_DDRAM)+LCD_START_LINE3+x);
+ 586:	8c 56       	subi	r24, 0x6C	; 108
+ 588:	0e 94 ab 02 	call	0x556	; 0x556 <lcd_command>
+ 58c:	08 95       	ret
+		else /* y==3 */
+			lcd_command((1<<LCD_DDRAM)+LCD_START_LINE4+x);
+ 58e:	8c 52       	subi	r24, 0x2C	; 44
+ 590:	0e 94 ab 02 	call	0x556	; 0x556 <lcd_command>
+ 594:	08 95       	ret
+
+00000596 <lcd_clrscr>:
+
+/*************************************************************************
+Clear display and set cursor to home position
+*************************************************************************/
+void lcd_clrscr(void){
+    lcd_command(1<<LCD_CLR);
+ 596:	81 e0       	ldi	r24, 0x01	; 1
+ 598:	0e 94 ab 02 	call	0x556	; 0x556 <lcd_command>
+ 59c:	08 95       	ret
+
+0000059e <lcd_home>:
+
+/*************************************************************************
+Set cursor to home position
+*************************************************************************/
+void lcd_home(void){
+    lcd_command(1<<LCD_HOME);
+ 59e:	82 e0       	ldi	r24, 0x02	; 2
+ 5a0:	0e 94 ab 02 	call	0x556	; 0x556 <lcd_command>
+ 5a4:	08 95       	ret
+
+000005a6 <lcd_putc>:
+/*************************************************************************
+Display character at current cursor position 
+Input:    character to be displayed                                       
+Returns:  none
+*************************************************************************/
+void lcd_putc(char c){
+ 5a6:	cf 93       	push	r28
+ 5a8:	c8 2f       	mov	r28, r24
+    uint8_t pos;
+
+
+    pos = lcd_waitbusy();   // read busy-flag and address counter
+ 5aa:	0e 94 9e 02 	call	0x53c	; 0x53c <lcd_waitbusy>
+    if (c=='\n'){
+ 5ae:	ca 30       	cpi	r28, 0x0A	; 10
+ 5b0:	a1 f4       	brne	.+40     	; 0x5da <lcd_putc+0x34>
+		else if ( (pos >= LCD_START_LINE3) && (pos < LCD_START_LINE4) )
+			addressCounter = LCD_START_LINE4;
+		else
+			addressCounter = LCD_START_LINE1;
+	#else
+		if ( pos < LCD_START_LINE3 )
+ 5b2:	84 31       	cpi	r24, 0x14	; 20
+ 5b4:	48 f0       	brcs	.+18     	; 0x5c8 <lcd_putc+0x22>
+			addressCounter = LCD_START_LINE2;
+		else if ( (pos >= LCD_START_LINE2) && (pos < LCD_START_LINE4) )
+ 5b6:	98 2f       	mov	r25, r24
+ 5b8:	90 54       	subi	r25, 0x40	; 64
+ 5ba:	94 31       	cpi	r25, 0x14	; 20
+ 5bc:	38 f0       	brcs	.+14     	; 0x5cc <lcd_putc+0x26>
+			addressCounter = LCD_START_LINE3;
+		else if ( (pos >= LCD_START_LINE3) && (pos < LCD_START_LINE2) )
+ 5be:	84 51       	subi	r24, 0x14	; 20
+ 5c0:	8c 32       	cpi	r24, 0x2C	; 44
+ 5c2:	30 f4       	brcc	.+12     	; 0x5d0 <lcd_putc+0x2a>
+			addressCounter = LCD_START_LINE4;
+ 5c4:	84 e5       	ldi	r24, 0x54	; 84
+ 5c6:	05 c0       	rjmp	.+10     	; 0x5d2 <lcd_putc+0x2c>
+			addressCounter = LCD_START_LINE4;
+		else
+			addressCounter = LCD_START_LINE1;
+	#else
+		if ( pos < LCD_START_LINE3 )
+			addressCounter = LCD_START_LINE2;
+ 5c8:	80 e4       	ldi	r24, 0x40	; 64
+ 5ca:	03 c0       	rjmp	.+6      	; 0x5d2 <lcd_putc+0x2c>
+		else if ( (pos >= LCD_START_LINE2) && (pos < LCD_START_LINE4) )
+			addressCounter = LCD_START_LINE3;
+ 5cc:	84 e1       	ldi	r24, 0x14	; 20
+ 5ce:	01 c0       	rjmp	.+2      	; 0x5d2 <lcd_putc+0x2c>
+		else if ( (pos >= LCD_START_LINE3) && (pos < LCD_START_LINE2) )
+			addressCounter = LCD_START_LINE4;
+		else
+			addressCounter = LCD_START_LINE1;
+ 5d0:	80 e0       	ldi	r24, 0x00	; 0
+	#endif
+	#endif
+		lcd_command((1<<LCD_DDRAM)+addressCounter);
+ 5d2:	80 58       	subi	r24, 0x80	; 128
+ 5d4:	0e 94 ab 02 	call	0x556	; 0x556 <lcd_command>
+ 5d8:	04 c0       	rjmp	.+8      	; 0x5e2 <lcd_putc+0x3c>
+				lcd_write((1<<LCD_DDRAM)+LCD_START_LINE1,0);
+			}
+		#endif
+			lcd_waitbusy();
+		#endif
+			lcd_write(c, 1);
+ 5da:	61 e0       	ldi	r22, 0x01	; 1
+ 5dc:	8c 2f       	mov	r24, r28
+ 5de:	0e 94 68 02 	call	0x4d0	; 0x4d0 <lcd_write>
+    }
+
+}/* lcd_putc */
+ 5e2:	cf 91       	pop	r28
+ 5e4:	08 95       	ret
+
+000005e6 <lcd_puts>:
+/*************************************************************************
+Display string without auto linefeed 
+Input:    string to be displayed
+Returns:  none
+*************************************************************************/
+void lcd_puts(const char *s){ /* print string on lcd (no auto linefeed) */
+ 5e6:	cf 93       	push	r28
+ 5e8:	df 93       	push	r29
+    register char c;
+
+    while ( (c = *s++) ) {
+ 5ea:	ec 01       	movw	r28, r24
+ 5ec:	89 91       	ld	r24, Y+
+ 5ee:	88 23       	and	r24, r24
+ 5f0:	29 f0       	breq	.+10     	; 0x5fc <lcd_puts+0x16>
+        lcd_putc(c);
+ 5f2:	0e 94 d3 02 	call	0x5a6	; 0x5a6 <lcd_putc>
+Returns:  none
+*************************************************************************/
+void lcd_puts(const char *s){ /* print string on lcd (no auto linefeed) */
+    register char c;
+
+    while ( (c = *s++) ) {
+ 5f6:	89 91       	ld	r24, Y+
+ 5f8:	81 11       	cpse	r24, r1
+ 5fa:	fb cf       	rjmp	.-10     	; 0x5f2 <lcd_puts+0xc>
+        lcd_putc(c);
+    }
+
+}/* lcd_puts */
+ 5fc:	df 91       	pop	r29
+ 5fe:	cf 91       	pop	r28
+ 600:	08 95       	ret
+
+00000602 <lcd_init>:
+                   LCD_DISP_ON             display on, cursor off
+                   LCD_DISP_ON_CURSOR      display on, cursor on
+                   LCD_DISP_CURSOR_BLINK   display on, cursor on flashing
+Returns:  none
+*************************************************************************/
+void lcd_init(uint8_t dispAttr){
+ 602:	1f 93       	push	r17
+ 604:	cf 93       	push	r28
+ 606:	df 93       	push	r29
+ 608:	18 2f       	mov	r17, r24
+      && ( &LCD_RS_PORT == &LCD_DATA0_PORT) && ( &LCD_RW_PORT == &LCD_DATA0_PORT) && (&LCD_E_PORT == &LCD_DATA0_PORT)
+      && (LCD_DATA0_PIN == 0 ) && (LCD_DATA1_PIN == 1) && (LCD_DATA2_PIN == 2) && (LCD_DATA3_PIN == 3) 
+      && (LCD_RS_PIN == 4 ) && (LCD_RW_PIN == 5) && (LCD_E_PIN == 6 ) )
+    {
+        /* configure all port bits as output (all LCD lines on same port) */
+        DDR(LCD_DATA0_PORT) |= 0x7F;
+ 60a:	81 b1       	in	r24, 0x01	; 1
+ 60c:	8f 67       	ori	r24, 0x7F	; 127
+ 60e:	81 b9       	out	0x01, r24	; 1
+*************************************************************************/
+static inline void _delayFourCycles(unsigned int __count){
+    if ( __count == 0 )    
+        __asm__ __volatile__( "rjmp 1f\n 1:" );    // 2 cycles
+    else
+        __asm__ __volatile__ (
+ 610:	e0 e3       	ldi	r30, 0x30	; 48
+ 612:	f3 e7       	ldi	r31, 0x73	; 115
+ 614:	31 97       	sbiw	r30, 0x01	; 1
+ 616:	f1 f7       	brne	.-4      	; 0x614 <lcd_init+0x12>
+        DDR(LCD_DATA3_PORT) |= _BV(LCD_DATA3_PIN);
+    }
+    delay(16000);        /* wait 16ms or more after power-on       */
+    
+    /* initial write to lcd is 8bit */
+    LCD_DATA1_PORT |= _BV(LCD_DATA1_PIN);  // _BV(LCD_FUNCTION)>>4;
+ 618:	11 9a       	sbi	0x02, 1	; 2
+    LCD_DATA0_PORT |= _BV(LCD_DATA0_PIN);  // _BV(LCD_FUNCTION_8BIT)>>4;
+ 61a:	10 9a       	sbi	0x02, 0	; 2
+    lcd_e_toggle();
+ 61c:	0e 94 64 02 	call	0x4c8	; 0x4c8 <toggle_e>
+*************************************************************************/
+static inline void _delayFourCycles(unsigned int __count){
+    if ( __count == 0 )    
+        __asm__ __volatile__( "rjmp 1f\n 1:" );    // 2 cycles
+    else
+        __asm__ __volatile__ (
+ 620:	e0 ef       	ldi	r30, 0xF0	; 240
+ 622:	f3 e2       	ldi	r31, 0x23	; 35
+ 624:	31 97       	sbiw	r30, 0x01	; 1
+ 626:	f1 f7       	brne	.-4      	; 0x624 <lcd_init+0x22>
+    LCD_DATA0_PORT |= _BV(LCD_DATA0_PIN);  // _BV(LCD_FUNCTION_8BIT)>>4;
+    lcd_e_toggle();
+    delay(4992);         /* delay, busy flag can't be checked here */
+   
+    /* repeat last command */ 
+    lcd_e_toggle();      
+ 628:	0e 94 64 02 	call	0x4c8	; 0x4c8 <toggle_e>
+*************************************************************************/
+static inline void _delayFourCycles(unsigned int __count){
+    if ( __count == 0 )    
+        __asm__ __volatile__( "rjmp 1f\n 1:" );    // 2 cycles
+    else
+        __asm__ __volatile__ (
+ 62c:	c5 e7       	ldi	r28, 0x75	; 117
+ 62e:	d0 e0       	ldi	r29, 0x00	; 0
+ 630:	fe 01       	movw	r30, r28
+ 632:	31 97       	sbiw	r30, 0x01	; 1
+ 634:	f1 f7       	brne	.-4      	; 0x632 <lcd_init+0x30>
+    /* repeat last command */ 
+    lcd_e_toggle();      
+    delay(64);           /* delay, busy flag can't be checked here */
+    
+    /* repeat last command a third time */
+    lcd_e_toggle();      
+ 636:	0e 94 64 02 	call	0x4c8	; 0x4c8 <toggle_e>
+*************************************************************************/
+static inline void _delayFourCycles(unsigned int __count){
+    if ( __count == 0 )    
+        __asm__ __volatile__( "rjmp 1f\n 1:" );    // 2 cycles
+    else
+        __asm__ __volatile__ (
+ 63a:	fe 01       	movw	r30, r28
+ 63c:	31 97       	sbiw	r30, 0x01	; 1
+ 63e:	f1 f7       	brne	.-4      	; 0x63c <lcd_init+0x3a>
+    /* repeat last command a third time */
+    lcd_e_toggle();      
+    delay(64);           /* delay, busy flag can't be checked here */
+
+    /* now configure for 4bit mode */
+    LCD_DATA0_PORT &= ~_BV(LCD_DATA0_PIN);   // LCD_FUNCTION_4BIT_1LINE>>4
+ 640:	10 98       	cbi	0x02, 0	; 2
+    lcd_e_toggle();
+ 642:	0e 94 64 02 	call	0x4c8	; 0x4c8 <toggle_e>
+*************************************************************************/
+static inline void _delayFourCycles(unsigned int __count){
+    if ( __count == 0 )    
+        __asm__ __volatile__( "rjmp 1f\n 1:" );    // 2 cycles
+    else
+        __asm__ __volatile__ (
+ 646:	21 97       	sbiw	r28, 0x01	; 1
+ 648:	f1 f7       	brne	.-4      	; 0x646 <lcd_init+0x44>
+		/* Display with KS0073 controller requires special commands for enabling 4 line mode */
+		lcd_command(KS0073_EXTENDED_FUNCTION_REGISTER_ON);
+		lcd_command(KS0073_4LINES_MODE);
+		lcd_command(KS0073_EXTENDED_FUNCTION_REGISTER_OFF);
+	#else
+		lcd_command(LCD_FUNCTION_DEFAULT);      /* function set: display lines  */
+ 64a:	88 e2       	ldi	r24, 0x28	; 40
+ 64c:	0e 94 ab 02 	call	0x556	; 0x556 <lcd_command>
+	#endif
+		lcd_command(LCD_DISP_OFF);              /* display off                  */
+ 650:	88 e0       	ldi	r24, 0x08	; 8
+ 652:	0e 94 ab 02 	call	0x556	; 0x556 <lcd_command>
+		lcd_clrscr();                           /* display clear                */
+ 656:	0e 94 cb 02 	call	0x596	; 0x596 <lcd_clrscr>
+		lcd_command(LCD_MODE_DEFAULT);          /* set entry mode               */
+ 65a:	86 e0       	ldi	r24, 0x06	; 6
+ 65c:	0e 94 ab 02 	call	0x556	; 0x556 <lcd_command>
+		lcd_command(dispAttr);                  /* display/cursor control       */
+ 660:	81 2f       	mov	r24, r17
+ 662:	0e 94 ab 02 	call	0x556	; 0x556 <lcd_command>
+
+}/* lcd_init */
+ 666:	df 91       	pop	r29
+ 668:	cf 91       	pop	r28
+ 66a:	1f 91       	pop	r17
+ 66c:	08 95       	ret
+
+0000066e <main>:
+ 66e:	2f ef       	ldi	r18, 0xFF	; 255
+ 670:	8f e3       	ldi	r24, 0x3F	; 63
+ 672:	92 e0       	ldi	r25, 0x02	; 2
+ 674:	21 50       	subi	r18, 0x01	; 1
+ 676:	80 40       	sbci	r24, 0x00	; 0
+ 678:	90 40       	sbci	r25, 0x00	; 0
+ 67a:	e1 f7       	brne	.-8      	; 0x674 <main+0x6>
+ 67c:	00 c0       	rjmp	.+0      	; 0x67e <main+0x10>
+ 67e:	00 00       	nop
+int main(void){
+	
+	_delay_ms(100);
+	
+	// Activate interrupts
+	sei();
+ 680:	78 94       	sei
+	
+	DDRC |= 0xFF; //Set Port C pins as outputs
+ 682:	87 b1       	in	r24, 0x07	; 7
+ 684:	8f ef       	ldi	r24, 0xFF	; 255
+ 686:	87 b9       	out	0x07, r24	; 7
+	
+	lcd_init(LCD_DISP_ON_CURSOR_BLINK);
+ 688:	8f e0       	ldi	r24, 0x0F	; 15
+ 68a:	0e 94 01 03 	call	0x602	; 0x602 <lcd_init>
+
+	/* Hardware initialisation */
+	gps_init(FREQUENCY, MESSAGES);
+ 68e:	60 e1       	ldi	r22, 0x10	; 16
+ 690:	81 e0       	ldi	r24, 0x01	; 1
+ 692:	0e 94 c4 00 	call	0x188	; 0x188 <gps_init>
+	
+	PRR0 |= (1<<PRTWI) | (1<<PRTIM0) | (1<<PRTIM2) | (1<<PRTIM1) | (1<<PRADC);
+ 696:	e4 e6       	ldi	r30, 0x64	; 100
+ 698:	f0 e0       	ldi	r31, 0x00	; 0
+ 69a:	80 81       	ld	r24, Z
+ 69c:	89 6e       	ori	r24, 0xE9	; 233
+ 69e:	80 83       	st	Z, r24
+
+    /* Disabling unwanted modules */
+    // code goes here
+	
+	lcd_clrscr();
+ 6a0:	0e 94 cb 02 	call	0x596	; 0x596 <lcd_clrscr>
+	lcd_home();
+ 6a4:	0e 94 cf 02 	call	0x59e	; 0x59e <lcd_home>
+	lcd_puts("GPS Logger Project");
+ 6a8:	87 e3       	ldi	r24, 0x37	; 55
+ 6aa:	91 e0       	ldi	r25, 0x01	; 1
+ 6ac:	0e 94 f3 02 	call	0x5e6	; 0x5e6 <lcd_puts>
+	lcd_gotoxy(0,1);
+ 6b0:	61 e0       	ldi	r22, 0x01	; 1
+ 6b2:	80 e0       	ldi	r24, 0x00	; 0
+ 6b4:	0e 94 b5 02 	call	0x56a	; 0x56a <lcd_gotoxy>
+	lcd_puts("By Hidayat and Manu");
+ 6b8:	8a e4       	ldi	r24, 0x4A	; 74
+ 6ba:	91 e0       	ldi	r25, 0x01	; 1
+ 6bc:	0e 94 f3 02 	call	0x5e6	; 0x5e6 <lcd_puts>
+	lcd_gotoxy(0,2);
+ 6c0:	62 e0       	ldi	r22, 0x02	; 2
+ 6c2:	80 e0       	ldi	r24, 0x00	; 0
+ 6c4:	0e 94 b5 02 	call	0x56a	; 0x56a <lcd_gotoxy>
+	lcd_puts("Comp Eng HTW Berlin");
+ 6c8:	8e e5       	ldi	r24, 0x5E	; 94
+ 6ca:	91 e0       	ldi	r25, 0x01	; 1
+ 6cc:	0e 94 f3 02 	call	0x5e6	; 0x5e6 <lcd_puts>
+ 6d0:	2f ef       	ldi	r18, 0xFF	; 255
+ 6d2:	8f e3       	ldi	r24, 0x3F	; 63
+ 6d4:	95 e6       	ldi	r25, 0x65	; 101
+ 6d6:	21 50       	subi	r18, 0x01	; 1
+ 6d8:	80 40       	sbci	r24, 0x00	; 0
+ 6da:	90 40       	sbci	r25, 0x00	; 0
+ 6dc:	e1 f7       	brne	.-8      	; 0x6d6 <main+0x68>
+ 6de:	00 c0       	rjmp	.+0      	; 0x6e0 <main+0x72>
+ 6e0:	00 00       	nop
+	lcd_puts("Fetch GPS coor....");
+	_delay_ms(1000);
+	
+*/
+
+	lcd_clrscr();
+ 6e2:	0e 94 cb 02 	call	0x596	; 0x596 <lcd_clrscr>
+	lcd_home();
+ 6e6:	0e 94 cf 02 	call	0x59e	; 0x59e <lcd_home>
+	lcd_gotoxy(4,0);
+ 6ea:	60 e0       	ldi	r22, 0x00	; 0
+ 6ec:	84 e0       	ldi	r24, 0x04	; 4
+ 6ee:	0e 94 b5 02 	call	0x56a	; 0x56a <lcd_gotoxy>
+	lcd_puts("Pos and dist");
+ 6f2:	82 e7       	ldi	r24, 0x72	; 114
+ 6f4:	91 e0       	ldi	r25, 0x01	; 1
+ 6f6:	0e 94 f3 02 	call	0x5e6	; 0x5e6 <lcd_puts>
+	lcd_gotoxy(0,1);
+ 6fa:	61 e0       	ldi	r22, 0x01	; 1
+ 6fc:	80 e0       	ldi	r24, 0x00	; 0
+ 6fe:	0e 94 b5 02 	call	0x56a	; 0x56a <lcd_gotoxy>
+	lcd_puts("Dist:");
+ 702:	8f e7       	ldi	r24, 0x7F	; 127
+ 704:	91 e0       	ldi	r25, 0x01	; 1
+ 706:	0e 94 f3 02 	call	0x5e6	; 0x5e6 <lcd_puts>
+	lcd_gotoxy(0,2);
+ 70a:	62 e0       	ldi	r22, 0x02	; 2
+ 70c:	80 e0       	ldi	r24, 0x00	; 0
+ 70e:	0e 94 b5 02 	call	0x56a	; 0x56a <lcd_gotoxy>
+	lcd_puts("Lat:");
+ 712:	85 e8       	ldi	r24, 0x85	; 133
+ 714:	91 e0       	ldi	r25, 0x01	; 1
+ 716:	0e 94 f3 02 	call	0x5e6	; 0x5e6 <lcd_puts>
+	lcd_gotoxy(0,3);
+ 71a:	63 e0       	ldi	r22, 0x03	; 3
+ 71c:	80 e0       	ldi	r24, 0x00	; 0
+ 71e:	0e 94 b5 02 	call	0x56a	; 0x56a <lcd_gotoxy>
+	lcd_puts("Lon:");
+ 722:	8a e8       	ldi	r24, 0x8A	; 138
+ 724:	91 e0       	ldi	r25, 0x01	; 1
+ 726:	0e 94 f3 02 	call	0x5e6	; 0x5e6 <lcd_puts>
+ 72a:	2f ef       	ldi	r18, 0xFF	; 255
+ 72c:	8f e7       	ldi	r24, 0x7F	; 127
+ 72e:	96 e1       	ldi	r25, 0x16	; 22
+ 730:	21 50       	subi	r18, 0x01	; 1
+ 732:	80 40       	sbci	r24, 0x00	; 0
+ 734:	90 40       	sbci	r25, 0x00	; 0
+ 736:	e1 f7       	brne	.-8      	; 0x730 <main+0xc2>
+ 738:	00 c0       	rjmp	.+0      	; 0x73a <main+0xcc>
+ 73a:	00 00       	nop
+ 73c:	0f 2e       	mov	r0, r31
+ 73e:	fb eb       	ldi	r31, 0xBB	; 187
+ 740:	af 2e       	mov	r10, r31
+ 742:	f2 e0       	ldi	r31, 0x02	; 2
+ 744:	bf 2e       	mov	r11, r31
+ 746:	f0 2d       	mov	r31, r0
+        if (gps_getNMEA(nmeabuff, 128) & GPS_NMEA_VALID) {
+			PORTC |= (1<<PORTC2);
+        }
+		*/
+		
+		if (gps_getNMEA(nmeabuff, 128));
+ 748:	68 94       	set
+ 74a:	cc 24       	eor	r12, r12
+ 74c:	c2 f8       	bld	r12, 2
+ 74e:	0f 2e       	mov	r0, r31
+ 750:	f7 ec       	ldi	r31, 0xC7	; 199
+ 752:	ef 2e       	mov	r14, r31
+ 754:	f2 e0       	ldi	r31, 0x02	; 2
+ 756:	ff 2e       	mov	r15, r31
+ 758:	f0 2d       	mov	r31, r0
+ 75a:	60 e8       	ldi	r22, 0x80	; 128
+ 75c:	84 eb       	ldi	r24, 0xB4	; 180
+ 75e:	92 e0       	ldi	r25, 0x02	; 2
+ 760:	0e 94 c3 01 	call	0x386	; 0x386 <gps_getNMEA>
+ 764:	e5 01       	movw	r28, r10
+ 766:	1c 2d       	mov	r17, r12
+		for(i=7,cur_pos_lat=4;i<18;i++){
+			lcd_gotoxy(cur_pos_lat,2);
+ 768:	62 e0       	ldi	r22, 0x02	; 2
+ 76a:	81 2f       	mov	r24, r17
+ 76c:	0e 94 b5 02 	call	0x56a	; 0x56a <lcd_gotoxy>
+			lcd_putc(nmeabuff[i]);
+ 770:	89 91       	ld	r24, Y+
+ 772:	0e 94 d3 02 	call	0x5a6	; 0x5a6 <lcd_putc>
+ 776:	1f 5f       	subi	r17, 0xFF	; 255
+			PORTC |= (1<<PORTC2);
+        }
+		*/
+		
+		if (gps_getNMEA(nmeabuff, 128));
+		for(i=7,cur_pos_lat=4;i<18;i++){
+ 778:	1f 30       	cpi	r17, 0x0F	; 15
+ 77a:	b1 f7       	brne	.-20     	; 0x768 <main+0xfa>
+ 77c:	e7 01       	movw	r28, r14
+ 77e:	1c 2d       	mov	r17, r12
+			lcd_gotoxy(cur_pos_lat,2);
+			lcd_putc(nmeabuff[i]);
+			cur_pos_lat++;	
+		}
+		for(j=19,cur_pos_lon=4;j<31;j++){
+			lcd_gotoxy(cur_pos_lon,3);
+ 780:	63 e0       	ldi	r22, 0x03	; 3
+ 782:	81 2f       	mov	r24, r17
+ 784:	0e 94 b5 02 	call	0x56a	; 0x56a <lcd_gotoxy>
+			lcd_putc(nmeabuff[j]);
+ 788:	89 91       	ld	r24, Y+
+ 78a:	0e 94 d3 02 	call	0x5a6	; 0x5a6 <lcd_putc>
+ 78e:	1f 5f       	subi	r17, 0xFF	; 255
+		for(i=7,cur_pos_lat=4;i<18;i++){
+			lcd_gotoxy(cur_pos_lat,2);
+			lcd_putc(nmeabuff[i]);
+			cur_pos_lat++;	
+		}
+		for(j=19,cur_pos_lon=4;j<31;j++){
+ 790:	10 31       	cpi	r17, 0x10	; 16
+ 792:	b1 f7       	brne	.-20     	; 0x780 <main+0x112>
+ 794:	2f ef       	ldi	r18, 0xFF	; 255
+ 796:	8f e3       	ldi	r24, 0x3F	; 63
+ 798:	9b e0       	ldi	r25, 0x0B	; 11
+ 79a:	21 50       	subi	r18, 0x01	; 1
+ 79c:	80 40       	sbci	r24, 0x00	; 0
+ 79e:	90 40       	sbci	r25, 0x00	; 0
+ 7a0:	e1 f7       	brne	.-8      	; 0x79a <main+0x12c>
+ 7a2:	00 c0       	rjmp	.+0      	; 0x7a4 <main+0x136>
+ 7a4:	00 00       	nop
+			lcd_putc(nmeabuff[j]);
+			cur_pos_lon++;
+		}
+		_delay_ms(500);	
+        
+        sleep_mode();
+ 7a6:	83 b7       	in	r24, 0x33	; 51
+ 7a8:	81 60       	ori	r24, 0x01	; 1
+ 7aa:	83 bf       	out	0x33, r24	; 51
+ 7ac:	88 95       	sleep
+ 7ae:	83 b7       	in	r24, 0x33	; 51
+ 7b0:	8e 7f       	andi	r24, 0xFE	; 254
+ 7b2:	83 bf       	out	0x33, r24	; 51
+    }
+ 7b4:	d2 cf       	rjmp	.-92     	; 0x75a <main+0xec>
+
+000007b6 <uart_init>:
+/// Index of the last character that has been written in the output buffer
+static volatile uint8_t uart_transmitBufWrite = 0;
+
+void uart_init(uint16_t pUbr) {
+    // write baudrate config (high-byte has to be written first!)
+    UBRR1H = (unsigned char)(pUbr>>8);
+ 7b6:	90 93 cd 00 	sts	0x00CD, r25
+    UBRR1L = (unsigned char)pUbr;
+ 7ba:	80 93 cc 00 	sts	0x00CC, r24
+
+    // configure port and activate interrupts
+    UCSR1B |= (1 << RXCIE1) | (1 << RXEN1) | (1 << TXEN1);
+ 7be:	e9 ec       	ldi	r30, 0xC9	; 201
+ 7c0:	f0 e0       	ldi	r31, 0x00	; 0
+ 7c2:	80 81       	ld	r24, Z
+ 7c4:	88 69       	ori	r24, 0x98	; 152
+ 7c6:	80 83       	st	Z, r24
+ 7c8:	08 95       	ret
+
+000007ca <uart_receiveChar>:
+
+    // the frame configuration is not changed since the default setting is needed
+}
+
+unsigned char uart_receiveChar() {
+    if (uart_receiveBufRead != uart_receiveBufWrite) {
+ 7ca:	90 91 b3 01 	lds	r25, 0x01B3
+ 7ce:	80 91 b2 01 	lds	r24, 0x01B2
+ 7d2:	98 17       	cp	r25, r24
+ 7d4:	81 f0       	breq	.+32     	; 0x7f6 <uart_receiveChar+0x2c>
+        // increment reading pointer while catching a possible array overflow
+        if (++uart_receiveBufRead >= UART_RECEIVE_BUFFER_SIZE) {
+ 7d6:	80 91 b3 01 	lds	r24, 0x01B3
+ 7da:	8f 5f       	subi	r24, 0xFF	; 255
+ 7dc:	80 93 b3 01 	sts	0x01B3, r24
+ 7e0:	88 23       	and	r24, r24
+ 7e2:	14 f4       	brge	.+4      	; 0x7e8 <uart_receiveChar+0x1e>
+            uart_receiveBufRead = 0;
+ 7e4:	10 92 b3 01 	sts	0x01B3, r1
+        }
+
+        return uart_receiveBuf[uart_receiveBufRead];
+ 7e8:	e0 91 b3 01 	lds	r30, 0x01B3
+ 7ec:	f0 e0       	ldi	r31, 0x00	; 0
+ 7ee:	ec 54       	subi	r30, 0x4C	; 76
+ 7f0:	fe 4f       	sbci	r31, 0xFE	; 254
+ 7f2:	80 81       	ld	r24, Z
+ 7f4:	08 95       	ret
+    }
+
+    return '\0';
+ 7f6:	80 e0       	ldi	r24, 0x00	; 0
+}
+ 7f8:	08 95       	ret
+
+000007fa <uart_hasData>:
+
+uint8_t uart_hasData() {
+    return uart_receiveBufRead != uart_receiveBufWrite;
+ 7fa:	20 91 b3 01 	lds	r18, 0x01B3
+ 7fe:	90 91 b2 01 	lds	r25, 0x01B2
+ 802:	81 e0       	ldi	r24, 0x01	; 1
+ 804:	29 13       	cpse	r18, r25
+ 806:	01 c0       	rjmp	.+2      	; 0x80a <uart_hasData+0x10>
+ 808:	80 e0       	ldi	r24, 0x00	; 0
+}
+ 80a:	08 95       	ret
+
+0000080c <uart_transmitChar>:
+    return currentChar;
+}
+
+void uart_transmitChar(char pData) {
+    // write byte into the output buffer, wait if the buffer is currently full
+    if (uart_transmitBufWrite+1 >= UART_TRANSMIT_BUFFER_SIZE) {
+ 80c:	20 91 90 01 	lds	r18, 0x0190
+ 810:	30 e0       	ldi	r19, 0x00	; 0
+ 812:	2f 5f       	subi	r18, 0xFF	; 255
+ 814:	3f 4f       	sbci	r19, 0xFF	; 255
+ 816:	20 32       	cpi	r18, 0x20	; 32
+ 818:	31 05       	cpc	r19, r1
+ 81a:	3c f0       	brlt	.+14     	; 0x82a <uart_transmitChar+0x1e>
+        // writing pointer is at the end of the buffer array, next index will be 0
+        while (uart_transmitBufRead == 0) {
+ 81c:	90 91 91 01 	lds	r25, 0x0191
+ 820:	99 23       	and	r25, r25
+ 822:	e1 f3       	breq	.-8      	; 0x81c <uart_transmitChar+0x10>
+            // wait, buffer is full
+        }
+
+        uart_transmitBufWrite = 0;
+ 824:	10 92 90 01 	sts	0x0190, r1
+ 828:	10 c0       	rjmp	.+32     	; 0x84a <uart_transmitChar+0x3e>
+    } else {
+        while (uart_transmitBufWrite+1 == uart_transmitBufRead) {
+ 82a:	40 91 90 01 	lds	r20, 0x0190
+ 82e:	20 91 91 01 	lds	r18, 0x0191
+ 832:	50 e0       	ldi	r21, 0x00	; 0
+ 834:	4f 5f       	subi	r20, 0xFF	; 255
+ 836:	5f 4f       	sbci	r21, 0xFF	; 255
+ 838:	30 e0       	ldi	r19, 0x00	; 0
+ 83a:	42 17       	cp	r20, r18
+ 83c:	53 07       	cpc	r21, r19
+ 83e:	a9 f3       	breq	.-22     	; 0x82a <uart_transmitChar+0x1e>
+            // wait, buffer is full
+        }
+
+        uart_transmitBufWrite++;
+ 840:	90 91 90 01 	lds	r25, 0x0190
+ 844:	9f 5f       	subi	r25, 0xFF	; 255
+ 846:	90 93 90 01 	sts	0x0190, r25
+    }
+
+    // write character into buffer
+    uart_transmitBuf[uart_transmitBufWrite] = pData;
+ 84a:	e0 91 90 01 	lds	r30, 0x0190
+ 84e:	f0 e0       	ldi	r31, 0x00	; 0
+ 850:	ee 56       	subi	r30, 0x6E	; 110
+ 852:	fe 4f       	sbci	r31, 0xFE	; 254
+ 854:	80 83       	st	Z, r24
+
+    // activate interrupt
+    UCSR1B |= (1 << UDRIE1);
+ 856:	e9 ec       	ldi	r30, 0xC9	; 201
+ 858:	f0 e0       	ldi	r31, 0x00	; 0
+ 85a:	80 81       	ld	r24, Z
+ 85c:	80 62       	ori	r24, 0x20	; 32
+ 85e:	80 83       	st	Z, r24
+ 860:	08 95       	ret
+
+00000862 <__vector_28>:
+Interrupt handling for incoming UART-data.
+The method will write the incoming character directly into the input buffer.
+If the buffer is full, characters may be discarded.
+*/
+
+ISR(USART1_RX_vect) {
+ 862:	1f 92       	push	r1
+ 864:	0f 92       	push	r0
+ 866:	0f b6       	in	r0, 0x3f	; 63
+ 868:	0f 92       	push	r0
+ 86a:	11 24       	eor	r1, r1
+ 86c:	2f 93       	push	r18
+ 86e:	3f 93       	push	r19
+ 870:	8f 93       	push	r24
+ 872:	9f 93       	push	r25
+ 874:	ef 93       	push	r30
+ 876:	ff 93       	push	r31
+	
+    if(uart_receiveBufWrite+1 >= UART_RECEIVE_BUFFER_SIZE) {
+ 878:	80 91 b2 01 	lds	r24, 0x01B2
+ 87c:	90 e0       	ldi	r25, 0x00	; 0
+ 87e:	01 96       	adiw	r24, 0x01	; 1
+ 880:	80 38       	cpi	r24, 0x80	; 128
+ 882:	91 05       	cpc	r25, r1
+ 884:	7c f0       	brlt	.+30     	; 0x8a4 <__vector_28+0x42>
+            // writing pointer is at the end of the buffer array, next index will be 0
+            if(uart_receiveBufRead != 0) {
+ 886:	80 91 b3 01 	lds	r24, 0x01B3
+ 88a:	88 23       	and	r24, r24
+ 88c:	11 f1       	breq	.+68     	; 0x8d2 <__vector_28+0x70>
+                uart_receiveBufWrite = 0;
+ 88e:	10 92 b2 01 	sts	0x01B2, r1
+                uart_receiveBuf[uart_receiveBufWrite] = UDR1;
+ 892:	e0 91 b2 01 	lds	r30, 0x01B2
+ 896:	f0 e0       	ldi	r31, 0x00	; 0
+ 898:	80 91 ce 00 	lds	r24, 0x00CE
+ 89c:	ec 54       	subi	r30, 0x4C	; 76
+ 89e:	fe 4f       	sbci	r31, 0xFE	; 254
+ 8a0:	80 83       	st	Z, r24
+                return;
+ 8a2:	19 c0       	rjmp	.+50     	; 0x8d6 <__vector_28+0x74>
+            }
+    } else {
+        if(uart_receiveBufWrite+1 != uart_receiveBufRead) {
+ 8a4:	20 91 b2 01 	lds	r18, 0x01B2
+ 8a8:	80 91 b3 01 	lds	r24, 0x01B3
+ 8ac:	30 e0       	ldi	r19, 0x00	; 0
+ 8ae:	2f 5f       	subi	r18, 0xFF	; 255
+ 8b0:	3f 4f       	sbci	r19, 0xFF	; 255
+ 8b2:	90 e0       	ldi	r25, 0x00	; 0
+ 8b4:	28 17       	cp	r18, r24
+ 8b6:	39 07       	cpc	r19, r25
+ 8b8:	61 f0       	breq	.+24     	; 0x8d2 <__vector_28+0x70>
+            uart_receiveBuf[++uart_receiveBufWrite] = UDR1;
+ 8ba:	e0 91 b2 01 	lds	r30, 0x01B2
+ 8be:	ef 5f       	subi	r30, 0xFF	; 255
+ 8c0:	e0 93 b2 01 	sts	0x01B2, r30
+ 8c4:	f0 e0       	ldi	r31, 0x00	; 0
+ 8c6:	80 91 ce 00 	lds	r24, 0x00CE
+ 8ca:	ec 54       	subi	r30, 0x4C	; 76
+ 8cc:	fe 4f       	sbci	r31, 0xFE	; 254
+ 8ce:	80 83       	st	Z, r24
+            return;
+ 8d0:	02 c0       	rjmp	.+4      	; 0x8d6 <__vector_28+0x74>
+    }
+
+    // if the method didn't return, it means that the buffer is full
+    // discard the byte in order to prevent a blocked UDR register
+    char garbage;
+    garbage = UDR1;
+ 8d2:	80 91 ce 00 	lds	r24, 0x00CE
+}
+ 8d6:	ff 91       	pop	r31
+ 8d8:	ef 91       	pop	r30
+ 8da:	9f 91       	pop	r25
+ 8dc:	8f 91       	pop	r24
+ 8de:	3f 91       	pop	r19
+ 8e0:	2f 91       	pop	r18
+ 8e2:	0f 90       	pop	r0
+ 8e4:	0f be       	out	0x3f, r0	; 63
+ 8e6:	0f 90       	pop	r0
+ 8e8:	1f 90       	pop	r1
+ 8ea:	18 95       	reti
+
+000008ec <__vector_29>:
+/*
+Interrupt handling for outgoing UART-data.
+As long as there is data in the output buffer, the method will write the data into the specific UART register. When the buffer is empty, the interrupt will deactivate itself.
+*/
+
+ISR(USART1_UDRE_vect) {
+ 8ec:	1f 92       	push	r1
+ 8ee:	0f 92       	push	r0
+ 8f0:	0f b6       	in	r0, 0x3f	; 63
+ 8f2:	0f 92       	push	r0
+ 8f4:	11 24       	eor	r1, r1
+ 8f6:	8f 93       	push	r24
+ 8f8:	9f 93       	push	r25
+ 8fa:	ef 93       	push	r30
+ 8fc:	ff 93       	push	r31
+
+    // write next byte until reading index == writing index
+    if (uart_transmitBufRead != uart_transmitBufWrite) {
+ 8fe:	90 91 91 01 	lds	r25, 0x0191
+ 902:	80 91 90 01 	lds	r24, 0x0190
+ 906:	98 17       	cp	r25, r24
+ 908:	91 f0       	breq	.+36     	; 0x92e <__stack+0x2f>
+        if (++uart_transmitBufRead >= UART_TRANSMIT_BUFFER_SIZE) {
+ 90a:	80 91 91 01 	lds	r24, 0x0191
+ 90e:	8f 5f       	subi	r24, 0xFF	; 255
+ 910:	80 93 91 01 	sts	0x0191, r24
+ 914:	80 32       	cpi	r24, 0x20	; 32
+ 916:	10 f0       	brcs	.+4      	; 0x91c <__stack+0x1d>
+            uart_transmitBufRead = 0;
+ 918:	10 92 91 01 	sts	0x0191, r1
+        }
+
+        UDR1 = uart_transmitBuf[uart_transmitBufRead];
+ 91c:	e0 91 91 01 	lds	r30, 0x0191
+ 920:	f0 e0       	ldi	r31, 0x00	; 0
+ 922:	ee 56       	subi	r30, 0x6E	; 110
+ 924:	fe 4f       	sbci	r31, 0xFE	; 254
+ 926:	80 81       	ld	r24, Z
+ 928:	80 93 ce 00 	sts	0x00CE, r24
+ 92c:	05 c0       	rjmp	.+10     	; 0x938 <__stack+0x39>
+    } else {
+        // buffer empty, deactivate interrupt
+        UCSR1B &= ~(1 << UDRIE1);
+ 92e:	e9 ec       	ldi	r30, 0xC9	; 201
+ 930:	f0 e0       	ldi	r31, 0x00	; 0
+ 932:	80 81       	ld	r24, Z
+ 934:	8f 7d       	andi	r24, 0xDF	; 223
+ 936:	80 83       	st	Z, r24
+    }
+}
+ 938:	ff 91       	pop	r31
+ 93a:	ef 91       	pop	r30
+ 93c:	9f 91       	pop	r25
+ 93e:	8f 91       	pop	r24
+ 940:	0f 90       	pop	r0
+ 942:	0f be       	out	0x3f, r0	; 63
+ 944:	0f 90       	pop	r0
+ 946:	1f 90       	pop	r1
+ 948:	18 95       	reti
+
+0000094a <_exit>:
+ 94a:	f8 94       	cli
+
+0000094c <__stop_program>:
+ 94c:	ff cf       	rjmp	.-2      	; 0x94c <__stop_program>
