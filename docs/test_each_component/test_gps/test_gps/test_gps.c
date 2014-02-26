@@ -31,11 +31,9 @@ int main(void){
 	/* Hardware initialisation */
 	gps_init(FREQUENCY, MESSAGES);
 	
+	 /* Disabling unwanted modules */
 	PRR0 |= (1<<PRTWI) | (1<<PRTIM0) | (1<<PRTIM2) | (1<<PRTIM1) | (1<<PRADC);
 
-    /* Disabling unwanted modules */
-    // code goes here
-	
 	lcd_clrscr();
 	lcd_home();
 	lcd_puts("GPS Logger Project");

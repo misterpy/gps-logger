@@ -1561,6 +1561,7 @@ int main(void){
  690:	81 e0       	ldi	r24, 0x01	; 1
  692:	0e 94 c4 00 	call	0x188	; 0x188 <gps_init>
 	
+	 /* Disabling unwanted modules */
 	PRR0 |= (1<<PRTWI) | (1<<PRTIM0) | (1<<PRTIM2) | (1<<PRTIM1) | (1<<PRADC);
  696:	e4 e6       	ldi	r30, 0x64	; 100
  698:	f0 e0       	ldi	r31, 0x00	; 0
@@ -1568,9 +1569,6 @@ int main(void){
  69c:	89 6e       	ori	r24, 0xE9	; 233
  69e:	80 83       	st	Z, r24
 
-    /* Disabling unwanted modules */
-    // code goes here
-	
 	lcd_clrscr();
  6a0:	0e 94 cb 02 	call	0x596	; 0x596 <lcd_clrscr>
 	lcd_home();
