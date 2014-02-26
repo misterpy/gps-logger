@@ -3,7 +3,7 @@
 
     #ifndef F_CPU
         /// CPU frequency = 7,3728MHz (baud-rate crystal)
-        #define F_CPU 7372800UL
+        #define F_CPU 7372800
     #endif
 
     /// definition of 'true' when using 8-bit integer as boolean replacement
@@ -16,6 +16,9 @@
     #define LF 0x0A    
     ///ASCII character no. 13 - Carriage Return
     #define CR 0x0D
+
+    #define SPI
+    #define SDSC
 
 // The values is commented out because it is already
 // available in the math.h header
