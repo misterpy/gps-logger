@@ -6,8 +6,8 @@
 #include "global.h"
 #include "ff.h"		/* Declarations of FatFs API */
 #include "gps.h"
-#include "calc.h"
 #include "lcd.h"
+#include "calc.h"
 
 FATFS FatFs;		/* FatFs work area needed for each volume */
 FIL Fil;			/* File object needed for each open file */
@@ -35,7 +35,7 @@ char pLongGPS[20];
 char pLatSD[20];
 char pLongSD[20];
 
-char pDistance[20];
+BYTE pDistance[20];
 
 int main (void)
 {
@@ -43,7 +43,7 @@ int main (void)
 	
 	sei();
 	
-	int i, j, cur_pos_lat, cur_pos_lon, write_pos=0;
+	int i, cur_pos_lat, cur_pos_lon, write_pos=0;
 
 	UINT bw;
 	DDRC |= 0xFF;
@@ -64,7 +64,7 @@ int main (void)
 			f_close(&Fil);
 			
 			if(bw == 28){
-				PORTC |= 0xFF;
+				PORTC |= (1<<PORTC0);
 			}
 		}
 
@@ -107,9 +107,9 @@ int main (void)
     lcd_putc(sdbuff[i]);
     cur_pos_lat++;
     }
-    for(j=18,cur_pos_lon=4;j<28;j++){
+    for(i=18,cur_pos_lon=4;i<28;i++){
 	    lcd_gotoxy(cur_pos_lon,2);
-	    lcd_putc(sdbuff[j]);
+	    lcd_putc(sdbuff[i]);
 	    cur_pos_lon++;
     }
 
@@ -134,7 +134,7 @@ int main (void)
 
 	while(1) {
         // We'll write the data only if it contains a valid position
-        if (gps_getNMEA(nmeabuff, 128) & GPS_NMEA_VALID) {		
+        if (gps_getNMEA(nmeabuff, 128) & GPS_NMEA_VALID) {	
 			lcd_clrscr();
 			lcd_home();
 			lcd_puts("Position");
@@ -151,40 +151,41 @@ int main (void)
             getDistance(nmeabuff, sdbuff, pLatGPS, pLongGPS, pLatSD, pLongSD, pDistance);
 
             /* Displaying data on LCD */
-    		for(arr_loop = 0, pos_loop = 4; arr_loop < COORDINATE_BUFFER_SIZE; arr_loop++){
-				lcd_gotoxy(pos_loop,2);
-				while(!(pLatGPS[arr_loop] == '\0')){
-					lcd_putc(pLatGPS[arr_loop]);
-					pos_loop++;
-				}
-			}
-			for(arr_loop = 0, pos_loop = 4; arr_loop < COORDINATE_BUFFER_SIZE; arr_loop++){
-				lcd_gotoxy(pos_loop,3);
-				while(!(pLongGPS[arr_loop] == '\0')){
-					lcd_putc(pLongGPS[arr_loop]);
-					pos_loop++;
-				}
-			}
-            for(arr_loop = 0, pos_loop = 4; arr_loop < COORDINATE_BUFFER_SIZE; arr_loop++){
-                lcd_gotoxy(pos_loop,1);
-                while(!(pDistance[arr_loop] == '\0')){
-                    lcd_putc(pDistance[arr_loop]);
-                    pos_loop++;
-                }
-            }
-            _delay_ms(500);
+            for(i=0,cur_pos_lon=4;i<8;i++){
+			    lcd_gotoxy(cur_pos_lon,1);
+			    lcd_putc(pDistance[i]);
+			    cur_pos_lon++;
+		    }
+			--cur_pos_lon;
+			lcd_gotoxy(cur_pos_lon,1);
+			lcd_puts("km");
+
+		    PORTC ^= (1<<PORTC1);
+
+            for(i=7,cur_pos_lat=4;i<18;i++){
+			    lcd_gotoxy(cur_pos_lat,2);
+			    lcd_putc(nmeabuff[i]);
+			    cur_pos_lat++;
+		    }
+		    for(i=19,cur_pos_lon=4;i<31;i++){
+			    lcd_gotoxy(cur_pos_lon,3);
+			    lcd_putc(nmeabuff[i]);
+			    cur_pos_lon++;
+		    }
 
             /* Logging the data on the SD card */
 			if (f_open(&Fil, "OUT.txt", FA_WRITE | FA_CREATE_ALWAYS) == FR_OK) {
 				f_lseek(&Fil, write_pos);
-				f_write(&Fil, nmeabuff, 128, &bw);	/* Write data to the file */
-				write_pos += 128;
+				f_write(&Fil, nmeabuff, 49, &bw);	/* Write data to the file */
+				write_pos += 50;
 				f_close(&Fil);
 						
-				if(bw == 128){
-					PORTC |= (1<<PORTC2);
+				if(bw == 49){
+					PORTC ^= (1<<PORTC2);
 				}
 			}
+
+			_delay_ms(500);
         }
 		else{
 			lcd_gotoxy(0,1);

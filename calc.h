@@ -1,8 +1,18 @@
 #ifndef CALC_H
 #define CALC_H
 
+#include <math.h>
+#include <stdlib.h>
+
+// definition of 'true' when using 8-bit integer as boolean replacement
+#define TRUE 1
+// definition of 'false'
+#define FALSE 0
+
 // Coordinate buffer size
 #define COORDINATE_BUFFER_SIZE 11
+
+#define RADIUS 6371
 
 /* 
 	This function will separate the given sentence into respective

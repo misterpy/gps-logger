@@ -1,11 +1,14 @@
 // calc.c
 
 #include "calc.h"
-#include "global.h"
 
 // this flags is needed for distance calculation
 int flagSouth = FALSE;
 int flagWest = FALSE;
+
+double getRadians(double degree){
+	return (degree * (M_PI/180));
+}
 
 void getCoordinate(char* pInput, char* pLatOut, char* pLongOut){
 
@@ -100,6 +103,12 @@ void getDistance(char* pNMEAIn, char* pSDBuffIn, char* pLatGPSOut, char* pLongGP
 	tempLatSD = coorTranslate(pLatSDOut, 'A');
 	tempLongSD = coorTranslate(pLongSDOut, 'O');
 
+	tempLongSD /= 100;
+	tempLatSD /= 100;
+
+	tempLatGPS /= 100;
+	tempLongGPS /= 100;
+
 	// Calculate the distance between two coordinate using the haversine formula
 	/* Haversine Formula */
 
@@ -119,9 +128,5 @@ void getDistance(char* pNMEAIn, char* pSDBuffIn, char* pLatGPSOut, char* pLongGP
 	/* ***************** */
 
 	// Put the distace calculated double back to char array
-	sprintf(pDistanceOut, "%.4f", tempDist);
-}
-
-double getRadians(double degree){
-	return (degree * (M_PI/180));
+	dtostrf(tempDist,1,4,pDistanceOut);
 }
